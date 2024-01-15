@@ -111,8 +111,9 @@
   programs.zsh = {
     enable = true;
     shellAliases = {
-      nixconf = "cd /etc/nixos && sudo nvim"; 
+      nixconf = "cd /etc/nixos && sudo -E nvim"; 
       nixupd = "sudo nixos-rebuild switch";
+      nixbuild = "sudo nixos-build";
     };
     histSize = 10000;
     ohMyZsh = {
