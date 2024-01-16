@@ -8,8 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./home-manager.nix
-  #    ./dockstation.nix
     ];
 
   # Bootloader.
@@ -147,8 +145,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    rust-analyzer
     lazydocker
-  #  dockstation
     lazygit
     ripgrep
     obsidian

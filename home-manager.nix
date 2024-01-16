@@ -1,10 +1,7 @@
-{ config, pkgs, ... }:
-let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
-in
+{ config, pkgs, home-manager, ... }:
 {
   imports = [
-    (import "${home-manager}/nixos")
+    home-manager.nixosModules.default
   ];
 
   home-manager.users.toms = {
