@@ -110,8 +110,8 @@
     enable = true;
     shellAliases = {
       nixconf = "cd /etc/nixos && sudo -E nvim"; 
-      nixupd = "sudo nixos-rebuild switch";
-      nixbuild = "sudo nixos-build";
+      nixupd = "sudo nixos-rebuild switch --impure";
+      nixtest = "sudo nixos-build test --impure";
     };
     histSize = 10000;
     ohMyZsh = {
@@ -152,7 +152,6 @@
     obsidian
     rustc
     cargo
-    rustup
     cargo-watch
     cargo-cranky
     sqlx-cli
