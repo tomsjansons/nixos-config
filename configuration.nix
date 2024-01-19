@@ -145,12 +145,16 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    onlyoffice-bin
+    corefonts
     rust-analyzer
+    rustfmt
     lazydocker
     lazygit
     ripgrep
     obsidian
     rustc
+    brave
     cargo
     cargo-watch
     cargo-cranky
@@ -164,7 +168,6 @@
     awscli2
     gzip
     file
-    brave
     _1password
     _1password-gui
     tmux
