@@ -112,6 +112,8 @@
       nixconf = "cd /etc/nixos && sudo -E nvim"; 
       nixupd = "sudo nixos-rebuild switch --impure";
       nixtest = "sudo nixos-build test --impure";
+      nixsh = "nix-shell --command zsh";
+      nixshp = "nix-shell --command zsh -p";
     };
     histSize = 10000;
     ohMyZsh = {
