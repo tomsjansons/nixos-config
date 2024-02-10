@@ -29,7 +29,7 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Europe/Riga";
+  time.timeZone = "Europe/Madrid";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -92,7 +92,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.toms = {
@@ -114,12 +114,14 @@
       nixtest = "sudo nixos-build test --impure";
       nixsh = "nix-shell --command zsh";
       nixshp = "nix-shell --command zsh -p";
+      stnvim = "steam-run nvim";
     };
     histSize = 10000;
     ohMyZsh = {
       enable = true;
       plugins = [ 
         "git" 
+        "npm"
         # {
         # will source zsh-autosuggestions.plugin.zsh
         # name = "zsh-npm-scripts-autocomplete";
@@ -131,7 +133,7 @@
 	#   sha256 = "5d145e13150acf5dbb01dac6e57e57c357a47a4b";
         # };
         # }
-    ];
+      ];
       theme = "robbyrussell";
     };
   };
@@ -147,6 +149,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    libsForQt5.kcalc
+    pandoc
     onlyoffice-bin
     corefonts
     rust-analyzer
