@@ -53,8 +53,11 @@
   services.xserver.xkbOptions = "caps:swapescape";
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager = {
+    xterm.enable = false;
+    xfce.enable = true;
+  };
+  services.xserver.displayManager.defaultSession = "xfce";
 
   # Configure keymap in X11
   services.xserver = {
@@ -98,11 +101,8 @@
   users.users.toms = {
     isNormalUser = true;
     description = "Toms Jansons";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "input" ];
     packages = with pkgs; [
-      firefox
-      kate
-    #  thunderbird
     ];
  };
 
@@ -144,13 +144,18 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.pulseaudio = true;
+
 
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    libsForQt5.kcalc
-    pandoc
+    xfce.xfce4-pulseaudio-plugin
+    pavucontrol
+    xfce.xfce4-panel-profiles
+    fusuma
+    pandoc # pandoc converts docs for obsidian plugin
     onlyoffice-bin
     corefonts
     rust-analyzer
