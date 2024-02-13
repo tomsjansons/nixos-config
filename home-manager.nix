@@ -27,12 +27,8 @@
     };
 
     services.fusuma = {
-      enable = true;
-      extraPackages = with pkgs; [ 
-        xdotool 
-        coreutils-full 
-        xorg.xprop
-      ];
+      enable = false;
+      extraPackages = with pkgs; [ xdotool ];
       settings = {
         threshold = { swipe = 0.1; };
         interval = { swipe = 0.7; };
