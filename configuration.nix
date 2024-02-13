@@ -29,7 +29,7 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Europe/Madrid";
+  time.timeZone = "Europe/Riga";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -151,6 +151,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    xfce.xfce4-clipman-plugin
     xfce.xfce4-pulseaudio-plugin
     pavucontrol
     xfce.xfce4-panel-profiles
