@@ -151,6 +151,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    xorg.xcalc
     xfce.xfce4-clipman-plugin
     xfce.xfce4-pulseaudio-plugin
     pavucontrol
@@ -167,6 +168,8 @@
     obsidian
     rustc
     brave
+    vivaldi
+    vivaldi-ffmpeg-codecs
     cargo
     cargo-watch
     cargo-cranky
