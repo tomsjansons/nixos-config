@@ -54,10 +54,13 @@
 
   # Enable the KDE Plasma Desktop Environment.
   services.xserver.desktopManager = {
-    xterm.enable = false;
     xfce.enable = true;
   };
   services.xserver.displayManager.defaultSession = "xfce";
+  environment.xfce.excludePackages = with pkgs; [
+    xfce.xfce4-terminal
+  ];
+  services.xserver.excludePackages = [ pkgs.xterm ];
 
   # Configure keymap in X11
   services.xserver = {
@@ -185,6 +188,10 @@
     _1password-gui
     tmux
     spotify
+    # libgcc
+    # cl
+    # zig
+    rocmPackages.llvm.clang
     wget
     fira-code-nerdfont
   ];

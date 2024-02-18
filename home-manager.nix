@@ -26,6 +26,10 @@
       enable = true;
     };
 
+    programs.alacritty = {
+      enable = true;
+    };
+
     xdg.configFile.nvim = {
       source = /etc/nixos/nvim;
       recursive = true;
