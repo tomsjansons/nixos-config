@@ -1,4 +1,4 @@
-{ config, pkgs, home-manager, ... }:
+{ config, pkgs, home-manager, lib, ... }:
 {
   imports = [
     home-manager.nixosModules.default
@@ -24,6 +24,30 @@
 
     programs.bash = {
       enable = true;
+    };
+
+    xdg.configFile.nvim = {
+      source = /etc/nixos/nvim;
+      recursive = true;
+    };
+
+    programs.neovim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+      extraConfig = ''
+      	:luafile ~/.config/nvim/lua/init.lua
+      '';
+      extraPackages = with pkgs; [
+        nodejs_21
+        corepack_21
+        xclip    
+        libgcc
+        cl
+        zig
+        rocmPackages.llvm.clang
+      ];
     };
 
     services.fusuma = {

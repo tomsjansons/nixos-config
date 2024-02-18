@@ -178,8 +178,6 @@
     slack
     beekeeper-studio
     discord
-    neovim
-    xclip
     awscli2
     gzip
     file
@@ -187,10 +185,6 @@
     _1password-gui
     tmux
     spotify
-    libgcc
-    cl
-    zig
-    rocmPackages.llvm.clang
     wget
     fira-code-nerdfont
   ];
