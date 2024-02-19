@@ -26,7 +26,7 @@
       enable = true;
     };
 
-    programs.alacritty = {
+    programs.kitty = {
       enable = true;
     };
 
