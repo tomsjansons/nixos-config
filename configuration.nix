@@ -49,24 +49,32 @@
   console.useXkbConfig = true;
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.xkbOptions = "caps:swapescape";
+  services.xserver = {
+    enable = true;
+    layout = "lv";
+    xkbVariant = "apostrophe";
+    xkbOptions = "caps:swapescape";
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.xserver.desktopManager = {
-    xfce.enable = true;
+    excludePackages = [ pkgs.xterm ];
+
+    desktopManager = {
+      xterm.enable = false;
+      xfce = {
+        enable = true;
+        noDesktop = true;
+        enableXfwm = false;
+      };
+    };
+    displayManager.defaultSession = "xfce+i3";
+    windowManager.i3 = {
+      enable = true;
+      package = pkgs.i3-gaps;
+    };
   };
-  services.xserver.displayManager.defaultSession = "xfce";
+
   environment.xfce.excludePackages = with pkgs; [
     xfce.xfce4-terminal
   ];
-  services.xserver.excludePackages = [ pkgs.xterm ];
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "lv";
-    xkbVariant = "apostrophe";
-  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
