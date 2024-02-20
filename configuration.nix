@@ -87,7 +87,7 @@
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
-    pulse.enable = true;
+    # pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
@@ -153,21 +153,15 @@
 
   virtualisation.docker.enable = true;
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.pulseaudio = true;
-
-
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    xorg.xcalc
-    xfce.xfce4-clipman-plugin
-    xfce.xfce4-pulseaudio-plugin
-    pavucontrol
-    xfce.xfce4-panel-profiles
-    fusuma
+    toybox # used for polybar startup, maybe not needed?
+    xorg.xrandr # used for polybar startup, maybe not needed?
+    playerctl # i3 audio media key control
+    xorg.xbacklight # i3 brightness key control
     pandoc # pandoc converts docs for obsidian plugin
     onlyoffice-bin
     corefonts

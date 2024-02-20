@@ -1,4 +1,4 @@
-{ config, pkgs, home-manager, lib, ... }:
+args@{ config, pkgs, home-manager, lib, ... }:
 {
   imports = [
     home-manager.nixosModules.default
@@ -26,52 +26,21 @@
       enable = true;
     };
 
-    programs.kitty = {
+    programs.rofi = {
       enable = true;
+      theme = "arthur";
     };
 
-    services.polybar = {
+    programs.kitty = {
       enable = true;
-      package = pkgs.polybar.override {
-        i3Support = true;
-        alsaSupport = true;
-        iwSupport = true;
-        githubSupport = true;
+      keybindings = {
+        "ctrl+shift+h" = "previous_tab";
+        "ctrl+shift+l" = "next_tab";
       };
-      config = {
-        "bar/laptop" = {
-          monitor = "eDP-1";
-          width = "100%";
-          height = "3%";
-          radius = 0;
-          # Just sticking them together in the center for now
-          modules-center = "date i3";
-        };
-        "bar/ext" = {
-          monitor = "DP-3";
-          width = "100%";
-          height = "3%";
-          radius = 0;
-          # Just sticking them together in the center for now
-          modules-center = "date i3";
-        };
-        "module/date" = {
-          type = "internal/date";
-          internal = 5;
-          date = "%Y-%m-%d";
-          time = "%H:%M";
-          label = "%date% %time%";
-        };
-        "module/i3" = {
-          type = "internal/i3";
-          scroll-up = "i3wm-wsnext";
-          scroll-down = "i3wm-wsprev";
-        };
-      };
-      script = ''
-        polybar laptop &
-        polybar ext &
-      '';
+    };
+
+    services = {
+      polybar = import /etc/nixos/polybar.nix (args);
     };
 
     xdg.configFile = {
@@ -102,27 +71,6 @@
         zig
         rocmPackages.llvm.clang
       ];
-    };
-
-    services.fusuma = {
-      enable = false;
-      extraPackages = with pkgs; [ xdotool ];
-      settings = {
-        threshold = { swipe = 0.1; };
-        interval = { swipe = 0.7; };
-        swipe = {
-          "3" = {
-            left = {
-              # GNOME: Switch to left workspace
-              command = "xdotool key ctrl+alt+Left";
-            };
-            right = {
-              # GNOME: Switch to right workspace
-              command = "xdotool key ctrl+alt+Right";
-            };
-          };
-        };
-      };
     };
 
     home.stateVersion = "18.09";
