@@ -48,6 +48,23 @@
 
   console.useXkbConfig = true;
 
+  security.polkit.enable = true;
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
+    };
+  };
+
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
@@ -65,10 +82,14 @@
         enableXfwm = false;
       };
     };
-    displayManager.defaultSession = "xfce+i3";
+    displayManager.defaultSession = "none+i3";
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
+      extraPackages = with pkgs; [
+        i3lock-fancy
+        lxappearance
+      ];
     };
   };
 
@@ -158,6 +179,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    polkit_gnome
     toybox # used for polybar startup, maybe not needed?
     xorg.xrandr # used for polybar startup, maybe not needed?
     playerctl # i3 audio media key control
