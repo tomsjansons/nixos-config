@@ -47,7 +47,7 @@
       monitor = "\${env:MONITOR:eDP1}";
       monitor-exact = false;
 
-      modules-right = "datetime";
+      modules-right = "tray wifi battery alsa datetime";
       modules-left = "i3";
     };
 
@@ -76,5 +76,22 @@
       label-focused-foreground = "#ff0000";
     };
 
+    "module/alsa" = {
+      type = "internal/alsa";
+    };
+
+    "module/tray" = {
+      type = "internal/tray";
+    };
+
+    "module/battery" = {
+      type = "internal/battery";
+      full-at = 99;
+    };
+
+    "module/wifi" = {
+      type = "internal/network";
+      interface = "wlp0s20f3";
+    };
   };
 }
