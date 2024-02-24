@@ -148,7 +148,13 @@
     extraGroups = [ "networkmanager" "wheel" "docker" "input" "video" ];
     packages = with pkgs; [
     ];
- };
+  };
+
+  security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
+  };
 
   programs.zsh = {
     enable = true;
@@ -213,7 +219,7 @@
     slurp
     swaynotificationcenter
     xdg-desktop-portal-hyprland
-    polkit-kde-agent
+    polkit_gnome
     busybox
     # toybox # used for polybar startup, maybe not needed?
     # xorg.xrandr # used for polybar startup, maybe not needed?

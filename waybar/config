@@ -71,7 +71,7 @@
       "spacing":10
    },
    "clock":{
-      "format":"{: %I:%M %p   %d/%m/%Y}"
+      "format":"{: %H:%M %p   %d/%m/%Y}"
    },
    "cpu":{
       "interval":15,
@@ -103,7 +103,7 @@
    },
    "custom/power":{
       "format":" ",
-      "on-click":"bash ~/.config/rofi/leave/leave.sh"
+      "on-click":"bash ~/.config/system_scripts/power-menu.sh"
    },
    "custom/updates":{
       "format":"{} Update(s)",
