@@ -34,16 +34,22 @@ args@{ config, pkgs, home-manager, lib, ... }:
       enable = true;
     };
 
-    programs.rofi = {
-      enable = true;
-      theme = "arthur";
-    };
-
-    programs.autorandr = {
+    programs.wofi = {
       enable = true;
     };
 
-    services.dunst = import /etc/nixos/dunst.nix (args);
+    services.cliphist = {
+      enable = true;
+    };
+
+    programs.waybar = {
+      enable = true;
+    };
+
+    programs.swaylock = {
+      enable = true;
+    };
+
     services.flameshot = {
       enable = true;
       settings = {  
@@ -64,10 +70,6 @@ args@{ config, pkgs, home-manager, lib, ... }:
       };
     };
 
-    services = {
-      polybar = import /etc/nixos/polybar.nix (args);
-    };
-
     xdg.configFile = {
       nvim = {
         source = /etc/nixos/nvim;
@@ -79,6 +81,14 @@ args@{ config, pkgs, home-manager, lib, ... }:
       };
       vivaldi-css = {
         source = /etc/nixos/vivaldi-css;
+        recursive = true;
+      };
+      hypr = {
+        source = /etc/nixos/hypr;
+        recursive = true;
+      };
+      waybar = {
+        source = /etc/nixos/waybar;
         recursive = true;
       };
     };
@@ -103,6 +113,6 @@ args@{ config, pkgs, home-manager, lib, ... }:
     };
 
     home.stateVersion = "18.09";
-    /* Here goes the rest of your home-manager config, e.g. home.packages = [ pkgs.foo ]; */
+    /* Here goes the rest of your home-manager config; e.g. home.packages = [ pkgs.foo ]; */
   };
 }

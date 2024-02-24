@@ -21,6 +21,8 @@
     enable = true;
   };
 
+  programs.thunar.enable = true;
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -72,15 +74,19 @@
     xkbVariant = "apostrophe";
     xkbOptions = "caps:swapescape";
 
-    excludePackages = [ pkgs.xterm ];
+    # excludePackages = [ pkgs.xterm ];
 
-    desktopManager = {
-      xterm.enable = false;
-      xfce = {
-        enable = true;
-        noDesktop = true;
-        enableXfwm = false;
-      };
+    # desktopManager = {
+    #   xterm.enable = false;
+    #   xfce = {
+    #     enable = true;
+    #     noDesktop = true;
+    #     enableXfwm = false;
+    #   };
+    # };
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
     };
     displayManager.defaultSession = "none+i3";
     windowManager.i3 = {
@@ -92,6 +98,12 @@
       ];
     };
   };
+
+  programs.hyprland = {
+    enable = true;
+  };
+
+  hardware.brillo.enable = true;
 
   environment.xfce.excludePackages = with pkgs; [
     xfce.xfce4-terminal
@@ -133,7 +145,7 @@
   users.users.toms = {
     isNormalUser = true;
     description = "Toms Jansons";
-    extraGroups = [ "networkmanager" "wheel" "docker" "input" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "input" "video" ];
     packages = with pkgs; [
     ];
  };
@@ -179,11 +191,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    polkit_gnome
-    toybox # used for polybar startup, maybe not needed?
-    xorg.xrandr # used for polybar startup, maybe not needed?
-    playerctl # i3 audio media key control
-    xorg.xbacklight # i3 brightness key control
+    swaynotificationcenter
+    xdg-desktop-portal-hyprland
+    polkit-kde-agent
+    busybox
+    # toybox # used for polybar startup, maybe not needed?
+    # xorg.xrandr # used for polybar startup, maybe not needed?
+    # playerctl # i3 audio media key control
+    # xorg.xbacklight # i3 brightness key control
     pandoc # pandoc converts docs for obsidian plugin
     onlyoffice-bin
     corefonts
