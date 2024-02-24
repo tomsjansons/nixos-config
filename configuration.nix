@@ -155,10 +155,8 @@
     shellAliases = {
       nixconf = "cd /etc/nixos && sudo -E nvim"; 
       nixupd = "sudo nixos-rebuild switch --impure";
-      nixtest = "sudo nixos-build test --impure";
       nixsh = "nix-shell --command zsh";
       nixshp = "nix-shell --command zsh -p";
-      stnvim = "steam-run nvim";
     };
     histSize = 10000;
     ohMyZsh = {
@@ -182,7 +180,25 @@
     };
   };
 
-  users.defaultUserShell = pkgs.zsh;
+  programs.fish = {
+    enable = true;
+    shellAliases = {
+      nixconf = "cd /etc/nixos && sudo -E nvim"; 
+      nixupd = "sudo nixos-rebuild switch --impure";
+      nixsh = "nix-shell --command zsh";
+      nixshp = "nix-shell --command zsh -p";
+    };
+  };
+
+  programs.bash = {
+    interactiveShellInit = ''
+      if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+      then
+        shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+        exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+      fi
+    '';
+  };
 
   virtualisation.docker.enable = true;
 
@@ -191,13 +207,17 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    xdg-user-dirs
+    ksnip
+    grim
+    slurp
     swaynotificationcenter
     xdg-desktop-portal-hyprland
     polkit-kde-agent
     busybox
     # toybox # used for polybar startup, maybe not needed?
     # xorg.xrandr # used for polybar startup, maybe not needed?
-    # playerctl # i3 audio media key control
+    playerctl 
     # xorg.xbacklight # i3 brightness key control
     pandoc # pandoc converts docs for obsidian plugin
     onlyoffice-bin

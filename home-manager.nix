@@ -50,16 +50,6 @@ args@{ config, pkgs, home-manager, lib, ... }:
       enable = true;
     };
 
-    services.flameshot = {
-      enable = true;
-      settings = {  
-        General = {    
-          disabledTrayIcon = false;    
-          showStartupLaunchMessage = true;  
-        };
-      };
-    };
-
     programs.kitty = {
       enable = true;
       keybindings = {
@@ -75,14 +65,6 @@ args@{ config, pkgs, home-manager, lib, ... }:
         source = /etc/nixos/nvim;
         recursive = true;
       };
-      i3 = {
-        source = /etc/nixos/i3;
-        recursive = true;
-      };
-      vivaldi-css = {
-        source = /etc/nixos/vivaldi-css;
-        recursive = true;
-      };
       hypr = {
         source = /etc/nixos/hypr;
         recursive = true;
@@ -90,6 +72,53 @@ args@{ config, pkgs, home-manager, lib, ... }:
       waybar = {
         source = /etc/nixos/waybar;
         recursive = true;
+      };
+      system_scripts = {
+        source = /etc/nixos/system_scripts;
+        recursive = true;
+      };
+    };
+
+    dconf = {
+      enable = true;
+      settings = {
+        "org/gnome/desktop/background" = {
+          picture-uri-dark = "file://${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.src}";
+        };
+        "org/gnome/desktop/interface" = {
+          color-scheme = "prefer-dark";
+        };
+      };
+    };
+
+    gtk = {
+      enable = true;
+      theme = {
+        name = "Adwaita-dark";
+        package = pkgs.gnome.gnome-themes-extra;
+      };
+
+      gtk3.extraConfig = {
+        Settings = ''
+          gtk-application-prefer-dark-theme=1
+        '';
+      };
+
+      gtk4.extraConfig = {
+        Settings = ''
+          gtk-application-prefer-dark-theme=1
+        '';
+      };
+    };
+
+    systemd.user.sessionVariables = config.home-manager.users.toms.home.sessionVariables;
+
+    qt = {
+      enable = true;
+      platformTheme = "gnome";
+      style = {
+        name = "adwaita-dark";
+        package = pkgs.adwaita-qt;
       };
     };
 

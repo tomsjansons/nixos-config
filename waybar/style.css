@@ -23,7 +23,7 @@ window#waybar.hidden {
     color: transparent;
 	background: transparent;
 }
-#tags {
+#workspace {
 	margin-top: 6px;
 	margin-left: 12px;
 	font-size: 4px;
@@ -33,7 +33,7 @@ window#waybar.hidden {
 	transition: none;
 }
 
-#tags button {
+#workspace button {
 	transition: none;
 	color: #B5E8E0;
 	background: transparent;
@@ -41,20 +41,20 @@ window#waybar.hidden {
 	border-radius: 2px;
 }
 
-#tags button.occupied {
+#workspace button.occupied {
 	transition: none;
 	color: #F28FAD;
 	background: transparent;
 	font-size: 4px;
 }
 
-#tags button.focused {
+#workspace button.focused {
 	color: #ABE9B3;
     border-top: 2px solid #ABE9B3;
     border-bottom: 2px solid #ABE9B3;
 }
 
-#tags button:hover {
+#workspace button:hover {
 	transition: none;
 	box-shadow: inherit;
 	text-shadow: inherit;
@@ -63,7 +63,7 @@ window#waybar.hidden {
     color: #E8A2AF;
 }
 
-#tags button.focused:hover {
+#workspace button.focused:hover {
     color: #E8A2AF;
 }
 
@@ -180,8 +180,8 @@ window#waybar.hidden {
 	padding-right: 10px;
 	border-radius: 10px;
 	transition: none;
-	color: #B5E8E0;
-	background: #161320;
+	color: #161320;
+	background: #CBF2B6;
 }
 
 #custom-launcher {
