@@ -92,6 +92,10 @@
     TTYVTDisallocate = true;
   };
 
+  services.logind.lidSwitch = "ignore";
+  services.logind.lidSwitchDocked = "ignore";
+  services.logind.lidSwitchExternalPower = "ignore";
+
   programs.hyprland = {
     enable = true;
   };

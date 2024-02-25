@@ -9,7 +9,7 @@ case $op in
                 systemctl $op
                 ;;
         suspend)
-                swaylock & sleep 5 && systemctl $op
+                swaylock & sleep 2 && systemctl $op
                 ;;
         lock)
 		swaylock
