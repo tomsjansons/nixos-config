@@ -46,6 +46,8 @@ args@{ config, pkgs, home-manager, lib, ... }:
       enable = true;
     };
 
+    services.network-manager-applet.enable = true;
+
     programs.swaylock = {
       enable = true;
       settings = {

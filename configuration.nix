@@ -21,6 +21,11 @@
     enable = true;
   };
 
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+
+  services.blueman.enable = true;
+
   programs.thunar.enable = true;
 
   # Configure network proxy if necessary
@@ -67,36 +72,24 @@
     };
   };
 
-  # Enable the X11 windowing system.
-  services.xserver = {
+  services.greetd = {
     enable = true;
-    layout = "lv";
-    xkbVariant = "apostrophe";
-    xkbOptions = "caps:swapescape";
-
-    # excludePackages = [ pkgs.xterm ];
-
-    # desktopManager = {
-    #   xterm.enable = false;
-    #   xfce = {
-    #     enable = true;
-    #     noDesktop = true;
-    #     enableXfwm = false;
-    #   };
-    # };
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd Hyprland";
+      };
     };
-    displayManager.defaultSession = "none+i3";
-    windowManager.i3 = {
-      enable = true;
-      package = pkgs.i3-gaps;
-      extraPackages = with pkgs; [
-        i3lock-fancy
-        lxappearance
-      ];
-    };
+  };
+
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal"; # Without this errors will spam on screen
+    # Without these bootlogs will spam on screen
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
   };
 
   programs.hyprland = {
@@ -156,6 +149,12 @@
     '';
   };
 
+  services.tlp = {
+    enable = true;
+  };
+
+  services.thermald.enable = true;
+
   programs.zsh = {
     enable = true;
     shellAliases = {
@@ -209,6 +208,8 @@
   virtualisation.docker.enable = true;
 
   nixpkgs.config.allowUnfree = true;
+
+  services.dbus.packages = [ pkgs.blueman ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
