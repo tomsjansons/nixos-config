@@ -107,6 +107,10 @@ args@{ config, pkgs, home-manager, lib, ... }:
         name = "Adwaita-dark";
         package = pkgs.gnome.gnome-themes-extra;
       };
+      iconTheme = {
+        package = pkgs.gnome.adwaita-icon-theme;
+        name = "adwaita-icon-theme";
+      };
 
       gtk3.extraConfig = {
         Settings = ''
@@ -152,6 +156,9 @@ args@{ config, pkgs, home-manager, lib, ... }:
     };
 
     home.stateVersion = "18.09";
-    /* Here goes the rest of your home-manager config; e.g. home.packages = [ pkgs.foo ]; */
+
+    home.packages = [
+      pkgs.networkmanagerapplet # nm-applet service needs this for icons https://github.com/NixOS/nixpkgs/issues/32730#issuecomment-1618895817
+    ];
   };
 }

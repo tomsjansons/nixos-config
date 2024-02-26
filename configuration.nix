@@ -194,8 +194,8 @@
     shellAliases = {
       nixconf = "cd /etc/nixos && sudo -E nvim"; 
       nixupd = "sudo nixos-rebuild switch --impure";
-      nixsh = "nix-shell --command zsh";
-      nixshp = "nix-shell --command zsh -p";
+      nixsh = "nix-shell --command fish";
+      nixshp = "nix-shell --command fish -p";
     };
   };
 
