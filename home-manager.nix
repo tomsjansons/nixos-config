@@ -15,7 +15,10 @@ args@{ config, pkgs, home-manager, lib, ... }:
   };
 
 
-  home-manager.users.toms = {
+  home-manager.users.toms = 
+  let
+    homeSessionVars = config.home-manager.users.toms.home.sessionVariables;
+  in { config, pkgs, ... }: {
     systemd.user.targets.tray = {
       Unit = {
         Description = "Home Manager System Tray";
@@ -31,6 +34,10 @@ args@{ config, pkgs, home-manager, lib, ... }:
     };
 
     programs.bash = {
+      enable = true;
+    };
+
+    programs.zellij = {
       enable = true;
     };
 
@@ -60,6 +67,10 @@ args@{ config, pkgs, home-manager, lib, ... }:
       };
     };
 
+    programs.alacritty = {
+      enable = true;
+    };
+
     programs.kitty = {
       enable = true;
       keybindings = {
@@ -70,9 +81,26 @@ args@{ config, pkgs, home-manager, lib, ... }:
       };
     };
 
+    # home.file."./.config/nvim/lazy-lock.json".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/nvim/lazy-lock.json";
+
+    # home.file."./.config/nvim/" = {
+    #   source = ./nvim;
+    #   recursive = true;
+    # };
+
     xdg.configFile = {
+      # nvim conf is split because we need lazy-lock.json to be readable
+      # "nvim/init.lua" = {
+      #   source = /etc/nixos/nvim/init.lua;
+      #   target = "nvim/init.lua";
+      # };
+      # "nvim/lua" = {
+      #   source = /etc/nixos/nvim/lua;
+      #   recursive = true;
+      #   target = "nvim/lua";
+      # };
       nvim = {
-        source = /etc/nixos/nvim;
+        source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/nvim";
         recursive = true;
       };
       hypr = {
@@ -85,6 +113,14 @@ args@{ config, pkgs, home-manager, lib, ... }:
       };
       system_scripts = {
         source = /etc/nixos/system_scripts;
+        recursive = true;
+      };
+      zellij = {
+        source = /etc/nixos/zellij;
+        recursive = true;
+      };
+      alacritty = {
+        source = /etc/nixos/alacritty;
         recursive = true;
       };
     };
@@ -125,7 +161,7 @@ args@{ config, pkgs, home-manager, lib, ... }:
       };
     };
 
-    systemd.user.sessionVariables = config.home-manager.users.toms.home.sessionVariables;
+    systemd.user.sessionVariables = homeSessionVars;
 
     qt = {
       enable = true;
@@ -141,9 +177,9 @@ args@{ config, pkgs, home-manager, lib, ... }:
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
-      extraConfig = ''
-      	:luafile ~/.config/nvim/lua/init.lua
-      '';
+      # extraConfig = ''
+      # 	:luafile ~/.config/nvim/init.lua
+      # '';
       extraPackages = with pkgs; [
         nodejs_21
         corepack_21

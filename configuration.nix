@@ -155,6 +155,9 @@
 
   services.tlp = {
     enable = true;
+    settings = {
+      USB_AUTOSUSPEND = 0;
+    };
   };
 
   services.thermald.enable = true;
@@ -218,6 +221,9 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    hyprpaper
+    tldr
+    zip
     xdg-user-dirs
     ksnip
     grim
