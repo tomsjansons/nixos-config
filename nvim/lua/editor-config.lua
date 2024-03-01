@@ -5,8 +5,5 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "auto"
 
-vim.opt.spelllang = "en_gb"
-vim.opt.spell = true
-
 vim.cmd [[command! W w]]
 vim.cmd [[command! Q q]]

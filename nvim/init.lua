@@ -352,6 +352,12 @@ require('lazy').setup({
     config = function()
       require("colorizer").setup()
     end,
+  },
+  {
+    "nvimtools/none-ls.nvim"
+  },
+  {
+    "davidmh/cspell.nvim"
   }
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -691,3 +697,4 @@ require('nvim-cmp-config')
 require('editor-config')
 require('oil-config')
 require('leap').create_default_mappings()
+require('none-ls')

@@ -1,3 +1,7 @@
 import = [
 "~/.config/alacritty/catppuccin_mocha.toml",
 ]
+
+[cursor.style]
+blinking = "On"
+shape = "Block"

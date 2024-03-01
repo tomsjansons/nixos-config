@@ -1,4 +1,4 @@
-args@{ config, pkgs, home-manager, lib, ... }:
+args@{ config, pkgs, home-manager, lib, helix, ... }:
 {
   imports = [
     home-manager.nixosModules.default
@@ -38,6 +38,10 @@ args@{ config, pkgs, home-manager, lib, ... }:
     };
 
     programs.zellij = {
+      enable = true;
+    };
+
+    programs.yazi = {
       enable = true;
     };
 
@@ -99,28 +103,36 @@ args@{ config, pkgs, home-manager, lib, ... }:
       #   recursive = true;
       #   target = "nvim/lua";
       # };
+      helix = {
+        source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/helix;
+        recursive = true;
+      };
       nvim = {
-        source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/nvim";
+        source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/nvim;
         recursive = true;
       };
       hypr = {
-        source = /etc/nixos/hypr;
+        source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/hypr;
         recursive = true;
       };
       waybar = {
-        source = /etc/nixos/waybar;
+        source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/waybar;
         recursive = true;
       };
       system_scripts = {
-        source = /etc/nixos/system_scripts;
+        source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/system_scripts;
+        recursive = true;
+      };
+      yazi = {
+        source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/yazi;
         recursive = true;
       };
       zellij = {
-        source = /etc/nixos/zellij;
+        source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/zellij;
         recursive = true;
       };
       alacritty = {
-        source = /etc/nixos/alacritty;
+        source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/alacritty;
         recursive = true;
       };
     };
@@ -172,6 +184,28 @@ args@{ config, pkgs, home-manager, lib, ... }:
       };
     };
 
+    programs.helix = {
+      enable = true;
+      package = helix.packages.${pkgs.system}.default;
+      extraPackages = with pkgs; [
+        nodejs_21
+        nodePackages."@astrojs/language-server"
+        nodePackages.svelte-language-server
+        nodePackages.typescript-language-server
+        yaml-language-server
+        taplo
+        nil
+        nodePackages.vscode-json-languageserver
+        dockerfile-language-server-nodejs
+        tailwindcss-language-server
+        nodePackages.bash-language-server
+        nodePackages_latest.prettier
+        marksman
+        typescript
+        vscode-langservers-extracted
+      ];
+    };
+
     programs.neovim = {
       enable = true;
       defaultEditor = true;
@@ -188,6 +222,7 @@ args@{ config, pkgs, home-manager, lib, ... }:
         cl
         zig
         rocmPackages.llvm.clang
+        python3
       ];
     };
 

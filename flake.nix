@@ -5,9 +5,10 @@
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs"; 
     };
+    helix.url = "github:helix-editor/helix";
   };
 
-  outputs = { self, nixpkgs, ... }@attrs: {
+  outputs = { self, nixpkgs, helix, ... }@attrs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = attrs;
