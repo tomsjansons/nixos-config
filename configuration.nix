@@ -199,6 +199,7 @@
       nixupd = "sudo nixos-rebuild switch --impure";
       nixsh = "nix-shell --command fish";
       nixshp = "nix-shell --command fish -p";
+      nixupgrade = "sudo nix flake update flake.nix --extra-experimental-features nix-command --extra-experimental-features flakes && sudo nixos-rebuild switch --upgrade --flake ./flake.nix --impure";
     };
   };
 

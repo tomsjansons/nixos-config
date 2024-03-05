@@ -217,8 +217,9 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
       extraPackages = with pkgs; [
         nodejs_21
         corepack_21
-        xclip    
         libgcc
+        wl-clipboard
+        wl-clipboard-x11
         cl
         zig
         rocmPackages.llvm.clang
