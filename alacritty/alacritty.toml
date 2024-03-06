@@ -3,5 +3,5 @@ import = [
 ]
 
 [cursor.style]
-blinking = "On"
+blinking = "Always"
 shape = "Block"
