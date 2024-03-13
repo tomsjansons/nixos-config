@@ -114,34 +114,7 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
       enable = true;
     };
 
-    programs.kitty = {
-      enable = true;
-      keybindings = {
-        "ctrl+shift+h" = "previous_tab";
-        "ctrl+shift+l" = "next_tab";
-        "ctrl+shift+k" = "previous_window";
-        "ctrl+shift+j" = "next_window";
-      };
-    };
-
-    # home.file."./.config/nvim/lazy-lock.json".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/nvim/lazy-lock.json";
-
-    # home.file."./.config/nvim/" = {
-    #   source = ./nvim;
-    #   recursive = true;
-    # };
-
     xdg.configFile = {
-      # nvim conf is split because we need lazy-lock.json to be readable
-      # "nvim/init.lua" = {
-      #   source = /etc/nixos/nvim/init.lua;
-      #   target = "nvim/init.lua";
-      # };
-      # "nvim/lua" = {
-      #   source = /etc/nixos/nvim/lua;
-      #   recursive = true;
-      #   target = "nvim/lua";
-      # };
       helix = {
         source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/helix;
         recursive = true;
