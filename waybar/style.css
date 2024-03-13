@@ -1,6 +1,5 @@
 * {
 	border: none;
-	border-radius: 10;
 	font-family: "JetbrainsMono Nerd Font";
 	font-size: 15px;
 	min-height: 10px;
@@ -18,7 +17,6 @@ window#waybar.hidden {
 	margin-top: 6px;
 	padding-left: 10px;
 	padding-right: 10px;
-	border-radius: 10px;
 	transition: none;
 	color: transparent;
 	background: transparent;
@@ -29,7 +27,6 @@ window#waybar.hidden {
 	margin-left: 12px;
 	font-size: 4px;
 	margin-bottom: 0px;
-	border-radius: 10px;
 	background: #2d0621;
 	transition: none;
 }
@@ -39,7 +36,6 @@ window#waybar.hidden {
 	color: #b120b6;
 	background: transparent;
 	font-size: 16px;
-	border-radius: 2px;
 }
 
 #workspaces button.special {
@@ -53,6 +49,7 @@ window#waybar.hidden {
 	color: #4523bf;
 	border-top: 2px solid #4523bf;
 	border-bottom: 2px solid #4523bf;
+	border-radius: 0;
 }
 
 #workspaces button:hover {
@@ -72,7 +69,6 @@ window#waybar.hidden {
 	padding-left: 10px;
 	padding-right: 10px;
 	margin-bottom: 0px;
-	border-radius: 10px;
 	transition: none;
 	color: #b120b6;
 	background: #2d0621;
@@ -84,7 +80,6 @@ window#waybar.hidden {
 	padding-left: 10px;
 	padding-right: 10px;
 	margin-bottom: 0px;
-	border-radius: 10px;
 	transition: none;
 	color: #b120b6;
 	background: #2d0621;
@@ -96,7 +91,6 @@ window#waybar.hidden {
 	padding-left: 10px;
 	padding-right: 10px;
 	margin-bottom: 0px;
-	border-radius: 10px;
 	transition: none;
 	color: #b120b6;
 	background: #2d0621;
@@ -131,7 +125,6 @@ window#waybar.hidden {
 	padding-left: 10px;
 	padding-right: 10px;
 	margin-bottom: 0px;
-	border-radius: 10px;
 	transition: none;
 	color: #b120b6;
 	background: #2d0621;
@@ -143,7 +136,6 @@ window#waybar.hidden {
 	padding-left: 10px;
 	padding-right: 10px;
 	margin-bottom: 0px;
-	border-radius: 10px;
 	transition: none;
 	color: #b120b6;
 	background: #2d0621;
@@ -155,7 +147,6 @@ window#waybar.hidden {
 	padding-left: 10px;
 	margin-bottom: 0px;
 	padding-right: 10px;
-	border-radius: 10px;
 	transition: none;
 	color: #b120b6;
 	background: #2d0621;
@@ -167,7 +158,6 @@ window#waybar.hidden {
 	padding-left: 10px;
 	margin-bottom: 0px;
 	padding-right: 10px;
-	border-radius: 10px;
 	transition: none;
 	color: #b120b6;
 	background: #2d0621;
@@ -179,7 +169,6 @@ window#waybar.hidden {
 	padding-left: 10px;
 	margin-bottom: 0px;
 	padding-right: 10px;
-	border-radius: 10px;
 	transition: none;
 	color: #b120b6;
 	background: #2d0621;
@@ -191,7 +180,6 @@ window#waybar.hidden {
 	margin-left: 8px;
 	padding-left: 10px;
 	padding-right: 5px;
-	border-radius: 10px;
 	transition: none;
 	color: #b120b6;
 	background: #2d0621;
@@ -205,7 +193,6 @@ window#waybar.hidden {
 	padding-left: 10px;
 	padding-right: 5px;
 	margin-bottom: 0px;
-	border-radius: 10px;
 	transition: none;
 	color: #b120b6;
 	background: #2d0621;
@@ -217,7 +204,6 @@ window#waybar.hidden {
 	padding-left: 10px;
 	padding-right: 10px;
 	margin-bottom: 0px;
-	border-radius: 10px;
 	transition: none;
 	color: #b120b6;
 	background: #2d0621;
@@ -229,7 +215,6 @@ window#waybar.hidden {
 	padding-left: 10px;
 	padding-right: 10px;
 	margin-bottom: 0px;
-	border-radius: 10px;
 	transition: none;
 	color: #b120b6;
 	background: #2d0621;
@@ -241,7 +226,6 @@ window#waybar.hidden {
 	padding-left: 10px;
 	padding-right: 10px;
 	margin-bottom: 0px;
-	border-radius: 10px;
 	transition: none;
 	color: #b120b6;
 	background: #2d0621;
@@ -250,10 +234,39 @@ window#waybar.hidden {
 	margin-top: 6px;
 	margin-left: 8px;
 	padding-left: 10px;
-	padding-right: 10px;
 	margin-bottom: 0px;
-	border-radius: 10px;
 	transition: none;
 	color: #b120b6;
 	background: #2d0621;
+	padding-right: 16px;
+}
+#custom-notification.notification {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+	transition: none;
+	color: #b120b6;
+	background: #2d0621;
+	padding-right: 10px;
+}
+#custom-notification.dnd-notification {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+	transition: none;
+	color: #b120b6;
+	background: #2d0621;
+	padding-right: 10px;
+}
+#custom-notification.dnd-inhibited-notification {
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+	transition: none;
+	color: #b120b6;
+	background: #2d0621;
+	padding-right: 10px;
 }
