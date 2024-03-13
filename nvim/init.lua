@@ -372,7 +372,24 @@ require('lazy').setup({
       { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
-  }
+  },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
+      vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
+      vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
+      vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
+      vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
+      vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
+    end,
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  },
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -450,6 +467,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+local trouble = require('trouble')
+
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
@@ -460,9 +479,11 @@ require('telescope').setup {
   },
   defaults = {
     mappings = {
+      n = { ["<c-t>"] = trouble.open_with_trouble },
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
+        ["<c-t>"] = trouble.open_with_trouble
       },
     },
   },
@@ -646,7 +667,7 @@ local mason_tools = {
   tailwindcss = { filetypes = { 'typescriptreact', 'svelte', 'astro' } },
   djlint = {},
   rust_analyzer = {},
-  tsserver = {},
+  tsserver = { init_options = { preferences = { importModuleSpecifierPreference = "non-relative" } } },
   eslint = {},
   eslint_d = {},
   prettierd = {},

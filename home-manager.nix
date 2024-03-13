@@ -57,6 +57,45 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
       enable = true;
     };
 
+    programs.btop = {
+      enable = true;
+    };
+
+    programs.fish = {
+      enable = true;
+      shellAliases = {
+        nixconf = "cd /etc/nixos && sudo -E nvim"; 
+        nixupd = "sudo nixos-rebuild switch --impure";
+        nixsh = "nix-shell --command fish";
+        nixshp = "nix-shell --command fish -p";
+        nixupgrade = "sudo nix flake update && sudo nixos-rebuild switch --upgrade --impure";
+        lsa = "ls -la";
+      };
+
+      interactiveShellInit = ''
+        set fish_greeting # Disable greeting
+        set --universal pure_show_system_time true
+        set --universal pure_color_system_time pure_color_mute
+        set --universal pure_enable_nixdevshell	true
+        set --universal pure_show_prefix_root_prompt true
+      '';
+      plugins = [
+        # Enable a plugin (here grc for colorized command output) from nixpkgs
+        { name = "grc"; src = pkgs.fishPlugins.grc.src; }
+        { name = "pure"; src = pkgs.fishPlugins.pure.src; }
+        # Manually packaging and enable a plugin
+        {
+          name = "z";
+          src = pkgs.fetchFromGitHub {
+            owner = "g-plane";
+            repo = "pnpm-shell-completion";
+            rev = "259e0b4ae5af4634dbb2fb2e39b916a75036d921";
+            sha256 = "sha256-3mDmFmRbYzhvoUC+nqW3ge4yLRsiaxAyGRkIC//vpsg=";
+          };
+        }
+      ];
+    };
+
     services.network-manager-applet.enable = true;
 
     programs.swaylock = {

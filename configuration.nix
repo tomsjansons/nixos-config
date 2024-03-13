@@ -164,48 +164,6 @@
 
   services.thermald.enable = true;
 
-  programs.zsh = {
-    enable = true;
-    shellAliases = {
-      nixconf = "cd /etc/nixos && sudo -E nvim"; 
-      nixupd = "sudo nixos-rebuild switch --impure";
-      nixsh = "nix-shell --command zsh";
-      nixshp = "nix-shell --command zsh -p";
-    };
-    histSize = 10000;
-    ohMyZsh = {
-      enable = true;
-      plugins = [ 
-        "git" 
-        "npm"
-        # {
-        # will source zsh-autosuggestions.plugin.zsh
-        # name = "zsh-npm-scripts-autocomplete";
-	# src = "git@github.com:grigorii-zander/zsh-npm-scripts-autocomplete.git";
-        # src = pkgs.fetchFromGitHub {
-        #   owner = "grigorii-zander";
-        #   repo = "zsh-npm-scripts-autocomplete";
-	#   rev = "v0.0.1";
-	#   sha256 = "5d145e13150acf5dbb01dac6e57e57c357a47a4b";
-        # };
-        # }
-      ];
-      theme = "robbyrussell";
-    };
-  };
-
-  programs.fish = {
-    enable = true;
-    shellAliases = {
-      nixconf = "cd /etc/nixos && sudo -E nvim"; 
-      nixupd = "sudo nixos-rebuild switch --impure";
-      nixsh = "nix-shell --command fish";
-      nixshp = "nix-shell --command fish -p";
-      nixupgrade = "sudo nix flake update && sudo nixos-rebuild switch --upgrade --impure";
-      lsa = "ls -la";
-    };
-  };
-
   programs.bash = {
     interactiveShellInit = ''
       if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
@@ -222,9 +180,15 @@
 
   services.dbus.packages = [ pkgs.blueman ];
 
+  programs.steam = {
+    enable = true;
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    nix-prefetch-github
+    grc
     hyprpaper
     tldr
     zip
