@@ -191,6 +191,7 @@
     nix-prefetch-github
     grc
     hyprpaper
+    hyprlock
     tldr
     zip
     xdg-user-dirs
