@@ -149,12 +149,6 @@
     ];
   };
 
-  security.pam.services.swaylock = {
-    text = ''
-      auth include login
-    '';
-  };
-
   services.tlp = {
     enable = true;
     settings = {

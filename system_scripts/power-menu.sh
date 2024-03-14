@@ -9,10 +9,10 @@ case $op in
                 systemctl $op
                 ;;
         suspend)
-                swaylock & sleep 2 && systemctl $op
+                hyprlock & sleep 2 && systemctl $op
                 ;;
         lock)
-		swaylock
+		hyprlock
                 ;;
         logout)
                 hyprctl dispatch exit
