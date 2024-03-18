@@ -175,6 +175,31 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
 
     systemd.user.sessionVariables = homeSessionVars;
 
+    systemd.user.services.battery-check = {
+      Unit = {
+        Description = "Battery check service";
+        # Documentation = [ "man:mako(1)" ];
+        # PartOf = [ "sway-session.target" ];
+      };
+
+      Service = {
+        Type = "simple";
+        # Environment = "PATH=$PATH:${lib.makeBinPath [ pkgs.coreutils pkgs.acpi ]}";
+        ExecStart = toString (
+          pkgs.writeShellScript "battery-check-script" ''
+            PATH=$PATH:${lib.makeBinPath [ pkgs.which pkgs.coreutils pkgs.gnugrep pkgs.acpi pkgs.libnotify ]} ${pkgs.bash}/bin/bash /home/toms/.config/system_scripts/battery-check.sh
+        '');
+        # ExecStart = "${pkgs.bash}/bin/bash /home/toms/.config/system_scripts/battery-check.sh";
+        RestartSec = 3;
+        Restart = "always";
+      };
+
+      Install = {
+        WantedBy = [ "default.target" ];
+      };
+    };
+
+
     qt = {
       enable = true;
       platformTheme = "gnome";
@@ -224,6 +249,13 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
         zig
         rocmPackages.llvm.clang
         python3
+      ];
+    };
+
+    programs.obs-studio = {
+      enable = true;
+      plugins = [
+        pkgs.obs-studio-plugins.wlrobs
       ];
     };
 
