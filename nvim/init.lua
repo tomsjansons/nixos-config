@@ -377,12 +377,12 @@ require('lazy').setup({
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
-      vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
-      vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
-      vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
-      vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
-      vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
+      vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end, { desc = "Toggle diagnostics" })
+      vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end, { desc = "Toggle [W]orkspace diagnostics" })
+      vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end, { desc = "Toggle [D]ocument diagnostics" })
+      vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end, { desc = "Toggle [Q]ickfix diagnostics" })
+      vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end, { desc = "Toggle [L]oclist diagnostics" })
+      vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end, { desc = "LSP References" })
     end,
     opts = {
       -- your configuration comes here
