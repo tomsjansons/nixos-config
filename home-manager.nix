@@ -236,9 +236,6 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
-      # extraConfig = ''
-      # 	:luafile ~/.config/nvim/init.lua
-      # '';
       extraPackages = with pkgs; [
         nodejs_21
         corepack_21

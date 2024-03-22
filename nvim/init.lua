@@ -115,7 +115,7 @@ require('lazy').setup({
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',  opts = {} },
   {
-    -- Adds git related signs to the gutter, as well as utilities for managing changes
+    -- Adds git related signs to the eutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
       -- See `:help gitsigns.txt`
@@ -563,7 +563,7 @@ vim.defer_fn(function()
   require("nvim-treesitter.install").prefer_git = true
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'astro', 'svelte', 'nix' },
+    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'astro', 'svelte', 'nix', 'regex', 'markdown', 'markdown_inline' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
