@@ -1,0 +1,15 @@
+{
+    "version": "0.2",
+    "language": "en",
+    "words": [
+        "alacritty",
+        "hypr",
+        "nvim",
+        "swaync",
+        "waybar",
+        "yazi",
+        "zellij",
+        "catppuccin"
+    ],
+    "ignorePaths":["nvim/**"]
+}

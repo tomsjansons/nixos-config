@@ -2,8 +2,9 @@
 
 INTERVAL=30
 
-MIN_BAT=10     # low water mark
-MAX_BAT=80     # high water mark
+MIN_BAT=10
+MAX_BAT=80
+CRIT_BAT=2
 
 # POWER_UNPLUG=/usr/share/sounds/freedesktop/stereo/power-unplug.oga
 # POWER_PLUG=/usr/share/sounds/freedesktop/stereo/power-plug.oga
@@ -28,8 +29,17 @@ while true ; do
 
     if [ $(get_bat_percent) -le ${MIN_BAT} ]; then 
         if [[ $(get_plugged_state) = "Discharging" ]]; then 
-            notify-send -u critical -i /etc/nixos/system_scripts/icons8-android-l-battery-64.png "Battery below ${MIN_BAT}" 
-            # notify_sound $POWER_PLUG
+            if [ $(get_bat_percent) -ge ${CRIT_BAT} ]; then
+                notify-send -u critical -i /etc/nixos/system_scripts/icons8-android-l-battery-64.png "Battery below ${MIN_BAT}" 
+                # notify_sound $POWER_PLUG
+            fi
+            
+            if [ $(get_bat_percent) -le ${CRIT_BAT} ]; then
+                notify-send -u critical -i /etc/nixos/system_scripts/icons8-sleep-50.png "Battery critical - hibernating" 
+                hyperlock &
+                sleep 2
+                systemctl hibernate
+            fi
         fi
     fi
     if [ $(get_bat_percent) -ge ${MAX_BAT} ]; then 
