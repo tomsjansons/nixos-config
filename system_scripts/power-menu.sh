@@ -9,10 +9,12 @@ case $op in
                 systemctl $op
                 ;;
         hibernate)
-                hyprlock & sleep 2 && systemctl $op
+                # hyprlock & sleep 2 && systemctl $op
+                systemctl $op && hyprlock
                 ;;
         suspend)
-                hyprlock & sleep 2 && systemctl $op
+                # hyprlock & sleep 2 && systemctl $op
+                systemctl $op && hyprlock
                 ;;
         lock)
 		hyprlock

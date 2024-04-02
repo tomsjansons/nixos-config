@@ -189,9 +189,9 @@ require('lazy').setup({
     },
   },
 
-  { 
-    "catppuccin/nvim", 
-    name = "catppuccin", 
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
     config = function()
       vim.cmd.colorscheme 'catppuccin'
@@ -378,10 +378,14 @@ require('lazy').setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end, { desc = "Toggle diagnostics" })
-      vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end, { desc = "Toggle [W]orkspace diagnostics" })
-      vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end, { desc = "Toggle [D]ocument diagnostics" })
-      vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end, { desc = "Toggle [Q]ickfix diagnostics" })
-      vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end, { desc = "Toggle [L]oclist diagnostics" })
+      vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end,
+        { desc = "Toggle [W]orkspace diagnostics" })
+      vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end,
+        { desc = "Toggle [D]ocument diagnostics" })
+      vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end,
+        { desc = "Toggle [Q]ickfix diagnostics" })
+      vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end,
+        { desc = "Toggle [L]oclist diagnostics" })
       vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end, { desc = "LSP References" })
     end,
     opts = {
@@ -390,6 +394,23 @@ require('lazy').setup({
       -- refer to the configuration section below
     },
   },
+  {
+    'kristijanhusak/vim-dadbod-ui',
+    dependencies = {
+      { 'tpope/vim-dadbod',                     lazy = true },
+      { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
+    },
+    cmd = {
+      'DBUI',
+      'DBUIToggle',
+      'DBUIAddConnection',
+      'DBUIFindBuffer',
+    },
+    init = function()
+      -- Your DBUI configuration
+      vim.g.db_ui_use_nerd_fonts = 1
+    end,
+  }
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -698,13 +719,38 @@ local mason_lspconfig = require 'mason-lspconfig'
 -- mason_lspconfig.setup {
 --   ensure_installed = vim.tbl_keys(servers),
 -- }
+--
+local get_nix_cmd = function(ls_name_in_store, exec_name)
+  local handle = io.popen(
+    "cd /nix/store && ls -la | grep '4096' | grep '" ..
+    ls_name_in_store .. "' | grep -v 'unwrapped' | grep -v 'fish' | awk '{print $9}'"
+  )
+  local found_stores_result = handle:read("*a")
+  handle:close()
+  local nix_store = ""
 
+  for line in found_stores_result:gmatch("[^\r\n]+") do
+    local line_name = line:match("%-(.*)") or line
+    local store_name = nix_stores and nix_store:match("%-(.*)") or nix_store or nix_store
+
+    if line_name > store_name then
+      nix_store = line
+    end
+  end
+  local location = "/nix/store/" .. nix_store:gsub("[\n\r]", "") .. "/bin/" .. exec_name
+  return location
+end
+local nix_cmds = {
+  rust_analyzer = get_nix_cmd("rust-analyzer", "rust-analyzer"),
+  lua_ls = get_nix_cmd("lua-language-server", "lua-language-server")
+}
 
 local on_attach = require('lsp-config')
 
 mason_lspconfig.setup_handlers {
   function(server_name)
     require('lspconfig')[server_name].setup {
+      cmd = nix_cmds[server_name] and { nix_cmds[server_name] } or nil,
       capabilities = capabilities,
       on_attach = on_attach,
       settings = mason_tools[server_name],

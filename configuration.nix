@@ -230,7 +230,6 @@
     slack
     beekeeper-studio
     discord
-    awscli2
     gzip
     file
     _1password

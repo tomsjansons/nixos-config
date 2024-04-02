@@ -68,7 +68,7 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
         nixupd = "sudo nixos-rebuild switch --impure";
         nixsh = "nix-shell --command fish";
         nixshp = "nix-shell --command fish -p";
-        nixupgrade = "sudo nix flake update && sudo nixos-rebuild switch --upgrade --impure";
+        nixupgrade = "cd /etc/nixos/ && sudo nix flake update && sudo nixos-rebuild switch --upgrade --impure";
         lsa = "ls -la";
       };
 
@@ -133,6 +133,10 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
       };
       alacritty = {
         source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/alacritty;
+        recursive = true;
+      };
+      swaync = {
+        source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/swaync;
         recursive = true;
       };
     };
@@ -237,6 +241,7 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
       viAlias = true;
       vimAlias = true;
       extraPackages = with pkgs; [
+        vimPlugins.markdown-preview-nvim
         nodejs_21
         corepack_21
         libgcc
