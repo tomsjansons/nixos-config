@@ -19,6 +19,14 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
   let
     homeSessionVars = config.home-manager.users.toms.home.sessionVariables;
   in { config, pkgs, ... }: {
+    # imports = [
+    #   hyprlock.homeManagerModules.hyprlock
+    # ];
+    #
+    # programs.hyprlock = {
+    #   enable = true;
+    # };
+
     systemd.user.targets.tray = {
       Unit = {
         Description = "Home Manager System Tray";
@@ -98,6 +106,7 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
 
     services.network-manager-applet.enable = true;
 
+
     programs.alacritty = {
       enable = true;
     };
@@ -176,6 +185,11 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
         '';
       };
     };
+
+    home.file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
+    home.pointerCursor.gtk.enable = true;
+    home.pointerCursor.package = pkgs.vanilla-dmz;
+    home.pointerCursor.name = "Vanilla-DMZ";
 
     systemd.user.sessionVariables = homeSessionVars;
 
