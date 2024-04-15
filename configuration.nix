@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, ... }@inputs:
 
 {
   imports =
@@ -196,7 +196,7 @@
     nix-prefetch-github
     grc
     hyprpaper
-    hyprlock
+    inputs.hyprlock.packages.${builtins.currentSystem}.default
     tldr
     zip
     xdg-user-dirs
@@ -211,7 +211,6 @@
     # xorg.xrandr # used for polybar startup, maybe not needed?
     playerctl 
     # xorg.xbacklight # i3 brightness key control
-    pandoc # pandoc converts docs for obsidian plugin
     onlyoffice-bin
     corefonts
     rust-analyzer
@@ -219,7 +218,6 @@
     lazydocker
     lazygit
     ripgrep
-    obsidian
     rustc
     brave
     vivaldi

@@ -6,7 +6,7 @@
       inputs.nixpkgs.follows = "nixpkgs"; 
     };
     helix.url = "github:helix-editor/helix";
-    # hyprlock.url = "github:hyprwm/Hyprlock";
+    hyprlock.url = "github:hyprwm/hyprlock";
   };
 
   outputs = { self, nixpkgs, helix, ... }@attrs: {
