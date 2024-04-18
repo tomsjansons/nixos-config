@@ -77,7 +77,8 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
         nixsh = "nix-shell --command fish";
         nixshp = "nix-shell --command fish -p";
         nixupgrade = "cd /etc/nixos/ && sudo nix flake update && sudo nixos-rebuild switch --upgrade --impure";
-        lsa = "ls -la";
+        lsa = "eza -la";
+        ls = "eza";
       };
 
       interactiveShellInit = ''
