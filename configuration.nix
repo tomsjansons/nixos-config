@@ -10,8 +10,6 @@
       ./hardware-configuration.nix
     ];
 
-  # nixpkgs.overlays = [ hyprlock.overlays.hyprlock ];
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.

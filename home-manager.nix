@@ -19,13 +19,6 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
   let
     homeSessionVars = config.home-manager.users.toms.home.sessionVariables;
   in { config, pkgs, ... }: {
-    # imports = [
-    #   hyprlock.homeManagerModules.hyprlock
-    # ];
-    #
-    # programs.hyprlock = {
-    #   enable = true;
-    # };
 
     systemd.user.targets.tray = {
       Unit = {
