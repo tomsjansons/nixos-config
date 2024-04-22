@@ -142,6 +142,10 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
         source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/swaync;
         recursive = true;
       };
+      wofi = {
+        source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/wofi;
+        recursive = true;
+      };
     };
 
     dconf = {
