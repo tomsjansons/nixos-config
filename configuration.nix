@@ -184,6 +184,19 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # yazi start
+    ffmpegthumbnailer
+    unar 
+    poppler
+    fd
+    fzf
+    zoxide
+    wl-clipboard
+    ueberzugpp
+    mediainfo
+    exiftool
+    # yazi end
+    thunderbird
     just
     jq
     eza

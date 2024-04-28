@@ -1,4 +1,11 @@
-args@{ config, pkgs, home-manager, lib, helix, ... }:
+args@{ 
+  config, 
+  pkgs, 
+  home-manager, 
+  lib, 
+  helix, 
+  ... 
+}:
 {
   imports = [
     home-manager.nixosModules.default
@@ -19,7 +26,6 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
   let
     homeSessionVars = config.home-manager.users.toms.home.sessionVariables;
   in { config, pkgs, ... }: {
-
     systemd.user.targets.tray = {
       Unit = {
         Description = "Home Manager System Tray";
@@ -44,6 +50,17 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
 
     programs.yazi = {
       enable = true;
+      package = args.yazi.packages.${builtins.currentSystem}.default;
+      enableFishIntegration = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
+
+    programs.zoxide = {
+      enable = true;
+      enableFishIntegration = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
     };
 
     programs.wofi = {
@@ -72,6 +89,7 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
         nixupgrade = "cd /etc/nixos/ && sudo nix flake update && sudo nixos-rebuild switch --upgrade --impure";
         lsa = "eza -la";
         ls = "eza";
+        # cd = "z";
       };
 
       interactiveShellInit = ''
@@ -163,12 +181,16 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
     gtk = {
       enable = true;
       theme = {
-        name = "Adwaita-dark";
-        package = pkgs.gnome.gnome-themes-extra;
+        name = "adw-gtk3-dark";
+        package = pkgs.adw-gtk3;
       };
       iconTheme = {
         package = pkgs.gnome.adwaita-icon-theme;
         name = "adwaita-icon-theme";
+      };
+      cursorTheme = {
+        name = "phinger-cursors-light";
+        package = pkgs.phinger-cursors;
       };
 
       gtk3.extraConfig = {
@@ -183,45 +205,54 @@ args@{ config, pkgs, home-manager, lib, helix, ... }:
         '';
       };
     };
+    
+    qt = {
+      enable = true;
+      platformTheme = "gtk";
+      style = {
+        name = "adwaita-dark";
+        package = pkgs.adwaita-qt;
+      };
+    };
 
-    home.file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
-    home.pointerCursor.gtk.enable = true;
-    home.pointerCursor.package = pkgs.vanilla-dmz;
-    home.pointerCursor.name = "Vanilla-DMZ";
+
+    home.sessionVariables = {
+      XCURSOR_THEME = "phinger-cursors-light";
+      XCURSOR_SIZE = 24;
+    };
+
+    home.pointerCursor = {
+      package = pkgs.phinger-cursors;
+      name = "phinger-cursors-light";
+      size = 24;
+      gtk.enable = true;
+    };
 
     systemd.user.sessionVariables = homeSessionVars;
 
     systemd.user.services.battery-check = {
       Unit = {
         Description = "Battery check service";
-        # Documentation = [ "man:mako(1)" ];
-        # PartOf = [ "sway-session.target" ];
       };
 
       Service = {
         Type = "simple";
-        # Environment = "PATH=$PATH:${lib.makeBinPath [ pkgs.coreutils pkgs.acpi ]}";
         ExecStart = toString (
           pkgs.writeShellScript "battery-check-script" ''
-            PATH=$PATH:${lib.makeBinPath [ pkgs.which pkgs.coreutils pkgs.gnugrep pkgs.acpi pkgs.libnotify ]} ${pkgs.bash}/bin/bash /home/toms/.config/system_scripts/battery-check.sh
+            PATH=$PATH:${lib.makeBinPath [ 
+              pkgs.which 
+              pkgs.coreutils 
+              pkgs.gnugrep 
+              pkgs.acpi 
+              pkgs.libnotify 
+            ]} ${pkgs.bash}/bin/bash /home/toms/.config/system_scripts/battery-check.sh
         '');
-        # ExecStart = "${pkgs.bash}/bin/bash /home/toms/.config/system_scripts/battery-check.sh";
         RestartSec = 3;
         Restart = "always";
       };
 
       Install = {
         WantedBy = [ "default.target" ];
-      };
-    };
-
-
-    qt = {
-      enable = true;
-      platformTheme = "gnome";
-      style = {
-        name = "adwaita-dark";
-        package = pkgs.adwaita-qt;
       };
     };
 

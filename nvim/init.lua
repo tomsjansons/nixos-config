@@ -332,11 +332,31 @@ require('lazy').setup({
     'wuelnerdotexe/vim-astro',
     ft = { "astro" },
   },
+  -- {
+  --   'stevearc/oil.nvim',
+  --   opts = {},
+  --   -- Optional dependencies
+  --   dependencies = { "nvim-tree/nvim-web-devicons" },
+  -- },
   {
-    'stevearc/oil.nvim',
-    opts = {},
-    -- Optional dependencies
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    "mikavilpas/yazi.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    event = "VeryLazy",
+    keys = {
+      -- 👇 in this section, choose your own keymappings!
+      {
+        "-",
+        function()
+          require("yazi").yazi()
+        end,
+        desc = "Open the file manager",
+      },
+    },
+    opts = {
+      open_for_directories = false,
+    },
   },
   {
     'sindrets/diffview.nvim'
@@ -780,7 +800,7 @@ require('eslint-config')
 require('diagnostics-config')
 require('nvim-cmp-config')
 require('editor-config')
-require('oil-config')
+-- require('oil-config')
 -- require('leap').create_default_mappings()
 require('none-ls')
 require('leap-config')

@@ -7,9 +7,15 @@
     };
     helix.url = "github:helix-editor/helix";
     hyprlock.url = "github:hyprwm/hyprlock";
+    yazi.url = "github:sxyazi/yazi";
   };
 
-  outputs = { self, nixpkgs, helix, ... }@attrs: {
+  outputs = { 
+    self, 
+    nixpkgs, 
+    helix, 
+    ... 
+  }@attrs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = attrs;
