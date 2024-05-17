@@ -101,14 +101,14 @@ require('lazy').setup({
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
+      -- 'saadparwaiz1/cmp_luasnip',
 
       -- Adds LSP completion capabilities
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
 
       -- Adds a number of user-friendly snippets
-      'rafamadriz/friendly-snippets',
+      -- 'rafamadriz/friendly-snippets',
     },
   },
 
@@ -356,6 +356,10 @@ require('lazy').setup({
     },
     opts = {
       open_for_directories = false,
+      -- open_file_function = function(chosen_file, config)
+      --   local escaped_chosen_file = string.gsub(chosen_file, "%$", "\\$")
+      --   vim.cmd(string.format('edit %s', escaped_chosen_file))
+      -- end,
     },
   },
   {
@@ -608,7 +612,7 @@ vim.defer_fn(function()
   require("nvim-treesitter.install").prefer_git = true
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'astro', 'svelte', 'nix', 'regex', 'markdown', 'markdown_inline', 'just' },
+    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'astro', 'svelte', 'nix', 'regex', 'markdown', 'markdown_inline', 'just', 'xml' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
@@ -709,9 +713,27 @@ local mason_tools = {
   cspell = {},
   svelte = {},
   astro = {},
-  tailwindcss = { filetypes = { 'typescriptreact', 'svelte', 'astro' } },
+  tailwindcss = {
+    filetypes = {
+      'typescript',
+      'typescriptreact',
+      'svelte',
+      'astro'
+    },
+    tailwindCSS = {
+      experimental = {
+        classRegex = {
+          "@tw\\s\\*\\/\\s+[\"'`]([^\"'`]*)"
+        }
+      }
+    }
+  },
   djlint = {},
   rust_analyzer = {},
+  bashls = {},
+  beautysh = {},
+  lemminx = {},
+  xmlformatter = {},
   tsserver = { init_options = { preferences = { importModuleSpecifierPreference = "non-relative" } } },
   eslint = {},
   eslint_d = {},
@@ -735,6 +757,7 @@ require('neodev').setup()
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = false;
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Ensure the servers above are installed

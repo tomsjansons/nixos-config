@@ -208,7 +208,7 @@ args@{
     
     qt = {
       enable = true;
-      platformTheme = "gtk";
+      platformTheme.name = "gtk";
       style = {
         name = "adwaita-dark";
         package = pkgs.adwaita-qt;
@@ -260,7 +260,7 @@ args@{
       enable = true;
       package = helix.packages.${pkgs.system}.default;
       extraPackages = with pkgs; [
-        nodejs_21
+        nodejs_22
         nodePackages."@astrojs/language-server"
         nodePackages.svelte-language-server
         nodePackages.typescript-language-server
@@ -280,13 +280,14 @@ args@{
 
     programs.neovim = {
       enable = true;
+      package = args.neovim-nightly-overlay.packages.${pkgs.system}.default;
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
       extraPackages = with pkgs; [
         vimPlugins.markdown-preview-nvim
-        nodejs_21
-        corepack_21
+        nodejs_22
+        corepack_22
         libgcc
         wl-clipboard
         wl-clipboard-x11
@@ -294,6 +295,7 @@ args@{
         zig
         rocmPackages.llvm.clang
         python3
+        lemminx
       ];
     };
 

@@ -8,6 +8,7 @@
     helix.url = "github:helix-editor/helix";
     hyprlock.url = "github:hyprwm/hyprlock";
     yazi.url = "github:sxyazi/yazi";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = { 
