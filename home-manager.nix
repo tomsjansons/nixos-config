@@ -134,7 +134,10 @@ args@{
       };
       hypr = {
         source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/hypr;
-        recursive = true;
+      };
+      "hypr-plugins-hyprscroller" = {
+        target = "hypr-plugins/libhyprscroller.so";
+        source = "${args.hyprscroller.packages.${pkgs.system}.default}/lib/libhyprscroller.so";
       };
       waybar = {
         source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/waybar;
@@ -162,6 +165,10 @@ args@{
       };
       wofi = {
         source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/wofi;
+        recursive = true;
+      };
+      niri = {
+        source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/niri;
         recursive = true;
       };
     };
