@@ -1,0 +1,40 @@
+#workspaces {
+	margin-top: 6px;
+	margin-left: 12px;
+	font-size: 4px;
+	margin-bottom: 0px;
+	background: #1e1e2e;
+	transition: none;
+}
+
+#workspaces button {
+	transition: none;
+	color: #a6e3a1;
+	background: transparent;
+	font-size: 16px;
+}
+
+#workspaces button.special {
+	transition: none;
+	color: #f5c2e7;
+	background: transparent;
+	font-size: 4px;
+}
+
+#workspaces button.active {
+	color: #89b4fa;
+	border-top: 2px solid #89b4fa;
+	border-bottom: 2px solid #89b4fa;
+	border-radius: 0;
+}
+
+#workspaces button:hover {
+	transition: none;
+	box-shadow: inherit;
+	text-shadow: inherit;
+	color: #94e2d5;
+}
+
+#workspaces button.focused:hover {
+	color: #94e2d5;
+}

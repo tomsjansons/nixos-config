@@ -20,6 +20,7 @@ format_on_save.setup({
     java = formatters.lsp,
     javascript = formatters.lsp,
     json = formatters.lsp,
+    jsonc = formatters.lsp,
     lua = formatters.lsp,
     markdown = formatters.prettierd,
     openscad = formatters.lsp,
