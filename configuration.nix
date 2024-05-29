@@ -12,11 +12,11 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-    }))
-  ];
+  # nixpkgs.overlays = [
+  #   (import (builtins.fetchTarball {
+  #     url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+  #   }))
+  # ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -107,7 +107,7 @@
 
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.default;
+    # package = inputs.hyprland.packages.${pkgs.system}.default;
   };
 
   hardware.brillo.enable = true;
@@ -191,6 +191,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    hyprpicker
     zoom-us
     # yazi start
     ffmpegthumbnailer
@@ -230,10 +231,7 @@
     xdg-desktop-portal-hyprland
     polkit_gnome
     busybox
-    # toybox # used for polybar startup, maybe not needed?
-    # xorg.xrandr # used for polybar startup, maybe not needed?
     playerctl 
-    # xorg.xbacklight # i3 brightness key control
     onlyoffice-bin
     corefonts
     rust-analyzer
@@ -243,15 +241,12 @@
     ripgrep
     rustc
     brave
-    vivaldi
-    vivaldi-ffmpeg-codecs
     cargo
     cargo-watch
     cargo-cranky
     sqlx-cli
     rambox
     slack
-    beekeeper-studio
     discord
     gzip
     file

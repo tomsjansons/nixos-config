@@ -12,19 +12,17 @@
 	padding-right: 10px;
 	margin-bottom: 0px;
 	transition: none;
-	color: #a6e3a1;
-	background: #1e1e2e;
+	color: #98971A;
+	background: #282828;
+	border-radius: 8px;
 }
 
 #battery.charging,
 #battery.plugged {
-	color: #a6e3a1;
-	background-color: #1e1e2e;
+	/* placeholder */
 }
 
 #battery.critical:not(.charging) {
-	background-color: #1e1e2e;
-	color: #a6e3a1;
 	animation-name: blink;
 	animation-duration: 0.5s;
 	animation-timing-function: linear;

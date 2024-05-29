@@ -135,10 +135,10 @@ args@{
       hypr = {
         source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/hypr;
       };
-      "hypr-plugins-hyprscroller" = {
-        target = "hypr-plugins/libhyprscroller.so";
-        source = "${args.hyprscroller.packages.${pkgs.system}.default}/lib/libhyprscroller.so";
-      };
+      # "hypr-plugins-hyprscroller" = {
+      #   target = "hypr-plugins/libhyprscroller.so";
+      #   source = "${args.hyprscroller.packages.${pkgs.system}.default}/lib/libhyprscroller.so";
+      # };
       waybar = {
         source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/waybar;
         recursive = true;
@@ -265,7 +265,7 @@ args@{
 
     programs.helix = {
       enable = true;
-      package = helix.packages.${pkgs.system}.default;
+      # package = helix.packages.${pkgs.system}.default;
       extraPackages = with pkgs; [
         nodejs_22
         nodePackages."@astrojs/language-server"

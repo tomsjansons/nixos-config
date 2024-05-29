@@ -1,5 +1,5 @@
 import = [
-"~/.config/alacritty/catppuccin_mocha.toml",
+	"~/.config/alacritty/gruvbox_dark.toml"
 ]
 
 [cursor.style]

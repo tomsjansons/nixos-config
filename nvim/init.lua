@@ -188,15 +188,23 @@ require('lazy').setup({
       end,
     },
   },
-
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "ellisonleao/gruvbox.nvim",
+    name = "gruvbox",
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'catppuccin'
+      vim.o.background = "dark"
+      vim.cmd.colorscheme "gruvbox"
     end,
   },
+  -- {
+  --   "catppuccin/nvim",
+  --   name = "catppuccin",
+  --   priority = 1000,
+  --   config = function()
+  --     vim.cmd.colorscheme 'catppuccin'
+  --   end,
+  -- },
 
   {
     -- Set lualine as statusline
@@ -205,7 +213,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'gruvbox_dark',
         component_separators = '|',
         section_separators = '',
 

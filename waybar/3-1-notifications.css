@@ -4,9 +4,10 @@
 	padding-left: 10px;
 	margin-bottom: 0px;
 	transition: none;
-	color: #a6e3a1;
-	background: #1e1e2e;
 	padding-right: 16px;
+	color: #98971A;
+	background: #282828;
+	border-radius: 8px;
 }
 
 #custom-notification.notification {
@@ -15,9 +16,10 @@
 	padding-left: 10px;
 	margin-bottom: 0px;
 	transition: none;
-	color: #a6e3a1;
-	background: #1e1e2e;
 	padding-right: 10px;
+	color: #98971A;
+	background: #282828;
+	border-radius: 8px;
 }
 
 #custom-notification.dnd-notification {
@@ -26,9 +28,10 @@
 	padding-left: 10px;
 	margin-bottom: 0px;
 	transition: none;
-	color: #a6e3a1;
-	background: #1e1e2e;
 	padding-right: 10px;
+	color: #98971A;
+	background: #282828;
+	border-radius: 8px;
 }
 
 #custom-notification.dnd-inhibited-notification {
@@ -37,7 +40,8 @@
 	padding-left: 10px;
 	margin-bottom: 0px;
 	transition: none;
-	color: #a6e3a1;
-	background: #1e1e2e;
 	padding-right: 10px;
+	color: #98971A;
+	background: #282828;
+	border-radius: 8px;
 }
