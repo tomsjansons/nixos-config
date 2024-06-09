@@ -315,8 +315,9 @@ args@{
 
     home.stateVersion = "18.09";
 
-    home.packages = [
-      pkgs.networkmanagerapplet # nm-applet service needs this for icons https://github.com/NixOS/nixpkgs/issues/32730#issuecomment-1618895817
+    home.packages = with pkgs; [
+      networkmanagerapplet # nm-applet service needs this for icons https://github.com/NixOS/nixpkgs/issues/32730#issuecomment-1618895817
+      (callPackage ./derivations/codecrafters-cli.nix {})
     ];
   };
 }

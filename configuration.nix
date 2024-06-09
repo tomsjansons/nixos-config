@@ -23,6 +23,12 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
+  networking.extraHosts = ''
+    127.0.0.1   zini.local
+    127.0.0.1   one.zini.local
+    127.0.0.1   two.zini.local
+    127.0.0.1   zini-two.local
+  '';
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   programs.git = {
@@ -191,6 +197,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    tidal-hifi
     hyprpicker
     zoom-us
     # yazi start
