@@ -205,7 +205,6 @@
     unar 
     poppler
     fd
-    fzf
     zoxide
     wl-clipboard
     ueberzugpp

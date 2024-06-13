@@ -293,7 +293,6 @@ require('lazy').setup({
       "nvim-lua/plenary.nvim",
     },
   },
-  { 'github/copilot.vim' },
   { 'windwp/nvim-ts-autotag' },
   {
     'windwp/nvim-autopairs',
@@ -407,23 +406,39 @@ require('lazy').setup({
   },
   {
     "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end, { desc = "Toggle diagnostics" })
-      vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end,
-        { desc = "Toggle [W]orkspace diagnostics" })
-      vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end,
-        { desc = "Toggle [D]ocument diagnostics" })
-      vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end,
-        { desc = "Toggle [Q]ickfix diagnostics" })
-      vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end,
-        { desc = "Toggle [L]oclist diagnostics" })
-      vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end, { desc = "LSP References" })
-    end,
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>cl",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<cmd>Trouble loclist toggle<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>xQ",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
     },
   },
   {
@@ -446,6 +461,10 @@ require('lazy').setup({
   {
     "NoahTheDuke/vim-just",
     ft = { "just" },
+  },
+  {
+    'echasnovski/mini.animate',
+    version = false
   },
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -748,7 +767,7 @@ local mason_tools = {
   eslint = {},
   eslint_d = {},
   prettierd = { filetypes = { 'jsonc', 'json' } },
-  rnix = { filetypes = { 'nix' } },
+  nil_ls = { filetypes = { 'nix' } },
   yamlls = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
@@ -816,9 +835,18 @@ mason_lspconfig.setup_handlers {
   end,
 }
 
+local mason_tools_list = vim.tbl_keys(mason_tools)
+local ensure_installed = {}
+for _, key in pairs(mason_tools_list) do
+  if key == "rust_analyzer" then
+    table.insert(ensure_installed, { "rust_analyzer", version = "2024-04-29" })
+  else
+    table.insert(ensure_installed, key)
+  end
+end
 
 require('mason-tool-installer').setup {
-  ensure_installed = vim.tbl_keys(mason_tools),
+  ensure_installed = ensure_installed,
   auto_update = true,
   -- start_delay = 3000, -- 3 second delay
   -- debounce_hours = 5, -- at least 5 hours between attempts to install/update
@@ -828,12 +856,10 @@ require('mason-tool-installer').setup {
 -- vim: ts=2 sts=2 sw=2 et
 require('format-on-save-conf')
 require('nvim-ts-autotag').setup()
-require('copilot')
 require('eslint-config')
 require('diagnostics-config')
 require('nvim-cmp-config')
 require('editor-config')
--- require('oil-config')
--- require('leap').create_default_mappings()
 require('none-ls')
 require('leap-config')
+require('mini.animate').setup()

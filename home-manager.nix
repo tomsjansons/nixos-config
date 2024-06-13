@@ -38,6 +38,16 @@ args@{
       enable = true;
       userName  = "Toms Jansons";
       userEmail = "toms.jansons@hood-software.lv";
+      delta = {
+        enable =  true;
+        options = {
+          dark = true;
+        };
+      };
+    };
+
+    programs.bat = {
+      enable = true;
     };
 
     programs.bash = {
@@ -56,11 +66,11 @@ args@{
       enableZshIntegration = true;
     };
 
-    programs.zoxide = {
+    programs.fzf = {
       enable = true;
-      enableFishIntegration = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
+      enableFishIntegration = false;
+      enableBashIntegration = false;
+      enableZshIntegration = false;
     };
 
     programs.wofi = {
@@ -79,6 +89,10 @@ args@{
       enable = true;
     };
 
+    programs.fd = {
+      enable = true;
+    };
+
     programs.fish = {
       enable = true;
       shellAliases = {
@@ -87,8 +101,9 @@ args@{
         nixsh = "nix-shell --command fish";
         nixshp = "nix-shell --command fish -p";
         nixupgrade = "cd /etc/nixos/ && sudo nix flake update && sudo nixos-rebuild switch --upgrade --impure";
-        lsa = "eza -la";
+        lsa = " eza --long --all --icons=always --git --time-style=long-iso --octal-permissions --no-user --total-size";
         ls = "eza";
+        cat = "bat";
         # cd = "z";
       };
 
@@ -98,11 +113,13 @@ args@{
         set --universal pure_color_system_time pure_color_mute
         set --universal pure_enable_nixdevshell	true
         set --universal pure_show_prefix_root_prompt true
+        export BAT_THEME=gruvbox-dark
       '';
       plugins = [
         # Enable a plugin (here grc for colorized command output) from nixpkgs
         { name = "grc"; src = pkgs.fishPlugins.grc.src; }
         { name = "pure"; src = pkgs.fishPlugins.pure.src; }
+        { name = "fzf.fish"; src = pkgs.fishPlugins.fzf-fish.src; }
         # Manually packaging and enable a plugin
         {
           name = "z";
@@ -113,6 +130,15 @@ args@{
             sha256 = "sha256-3mDmFmRbYzhvoUC+nqW3ge4yLRsiaxAyGRkIC//vpsg=";
           };
         }
+        # {
+        #   name = "fzf";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "PatrickF1";
+        #     repo = "fzf.fish";
+        #     rev = "8920367cf85eee5218cc25a11e209d46e2591e7a";
+        #     sha256 = "sha256-3mDmFmRbYzhvoUC+nqW3ge4yLRsiaxAyGRkIC//vpsg=";
+        #   };
+        # }
       ];
     };
 
