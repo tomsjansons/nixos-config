@@ -462,10 +462,6 @@ require('lazy').setup({
     "NoahTheDuke/vim-just",
     ft = { "just" },
   },
-  {
-    'echasnovski/mini.animate',
-    version = false
-  },
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -862,4 +858,3 @@ require('nvim-cmp-config')
 require('editor-config')
 require('none-ls')
 require('leap-config')
-require('mini.animate').setup()

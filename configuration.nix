@@ -113,7 +113,7 @@
 
   programs.hyprland = {
     enable = true;
-    # package = inputs.hyprland.packages.${pkgs.system}.default;
+    package = inputs.hyprland.packages.${pkgs.system}.default;
   };
 
   hardware.brillo.enable = true;
@@ -124,6 +124,11 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+    services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -197,6 +202,9 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    zed-editor
+    neovide
+    calc
     tidal-hifi
     hyprpicker
     zoom-us

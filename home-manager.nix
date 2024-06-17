@@ -161,10 +161,10 @@ args@{
       hypr = {
         source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/hypr;
       };
-      # "hypr-plugins-hyprscroller" = {
-      #   target = "hypr-plugins/libhyprscroller.so";
-      #   source = "${args.hyprscroller.packages.${pkgs.system}.default}/lib/libhyprscroller.so";
-      # };
+      "hypr-plugins-hy3" = {
+        target = "hypr-plugins/libhy3.so";
+        source = "${args.hy3.packages.${pkgs.system}.default}/lib/libhy3.so";
+      };
       waybar = {
         source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/waybar;
         recursive = true;
@@ -195,6 +195,10 @@ args@{
       };
       niri = {
         source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/niri;
+        recursive = true;
+      };
+      neovide = {
+        source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/neovide;
         recursive = true;
       };
     };
