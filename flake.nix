@@ -2,7 +2,7 @@
   inputs = { 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      url = github:nix-community/home-manager;
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs"; 
     };
     helix.url = "github:helix-editor/helix";
@@ -21,6 +21,10 @@
       # (you may encounter issues if you dont do the same for hyprland)
       inputs.hyprland.follows = "hyprland";
     };
+    # nixos-cosmic = {
+    #   url = "github:lilyinstarlight/nixos-cosmic";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = { 
@@ -32,7 +36,18 @@
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = attrs;
-      modules = [ ./configuration.nix ./home-manager.nix ];
+      modules = [ 
+        # {
+        #   nix.settings = {
+        #     substituters = [ "https://cosmic.cachix.org/" ];
+        #     trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+        #   };
+        # }
+        # attrs.nixos-cosmic.nixosModules.default
+        ./configuration.nix 
+        ./home-manager.nix
+        # ./cosmic.nix
+      ];
     };
   };
 }

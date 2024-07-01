@@ -25,6 +25,7 @@
   networking.hostName = "nixos"; # Define your hostname.
   networking.extraHosts = ''
     127.0.0.1   zini.local
+    127.0.0.1   hub.zini.local
     127.0.0.1   one.zini.local
     127.0.0.1   two.zini.local
     127.0.0.1   zini-two.local
@@ -84,9 +85,16 @@
           TimeoutStopSec = 10;
         };
     };
-
   };
 
+  # xdg.portal = {
+  #   enable = true;
+  #   extraPortals = [
+  #     pkgs.xdg-desktop-portal-hyprland
+  #   ];
+  # };
+
+  # for cosmic needs to be commented out - start
   services.greetd = {
     enable = true;
     settings = {
@@ -95,6 +103,7 @@
       };
     };
   };
+  # for cosmic needs to be commented out - end
 
   systemd.services.greetd.serviceConfig = {
     Type = "idle";
@@ -168,12 +177,14 @@
     ];
   };
 
+  # for cosmic needs to be commented out - start
   services.tlp = {
     enable = true;
     settings = {
       USB_AUTOSUSPEND = 0;
     };
   };
+  # for cosmic needs to be commented out - end
 
   services.thermald.enable = true;
 

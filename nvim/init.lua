@@ -635,7 +635,7 @@ vim.defer_fn(function()
   require("nvim-treesitter.install").prefer_git = true
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'json', 'css', 'rust', 'kdl', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'astro', 'svelte', 'nix', 'regex', 'markdown', 'markdown_inline', 'just', 'xml' },
+    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'json', 'css', 'rust', 'kdl', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'astro', 'svelte', 'nix', 'regex', 'markdown', 'markdown_inline', 'just', 'xml', 'graphql' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
@@ -753,6 +753,7 @@ local mason_tools = {
   },
   djlint = {},
   rust_analyzer = {},
+  graphql = {},
   bashls = {},
   beautysh = {},
   lemminx = {},

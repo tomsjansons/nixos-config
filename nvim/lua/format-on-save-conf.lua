@@ -7,6 +7,9 @@ format_on_save.setup({
     ".local/share/nvim/lazy",
   },
   formatter_by_ft = {
+    graphql = {
+      formatters.prettierd,
+    },
     astro = {
       formatters.eslint_d_fix,
       formatters.prettierd,
