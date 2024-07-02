@@ -99,7 +99,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd Hyprland";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd niri-session";
       };
     };
   };
@@ -124,6 +124,8 @@
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.default;
   };
+
+  # programs.niri.enable = true;
 
   hardware.brillo.enable = true;
 
@@ -210,9 +212,20 @@
 
   virtualisation.waydroid.enable = true;
 
+  # for niri
+  services.gnome.gnome-keyring.enable = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
+  
+  environment.systemPackages = let 
+    xwayland-satellite = pkgs.callPackage ./xwayland-satellite.nix {};
+  in
+  with pkgs; [
+    niri
+    xwayland-satellite
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-gnome
     zed-editor
     neovide
     calc
