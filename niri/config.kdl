@@ -296,7 +296,7 @@ binds {
   Mod+Q { spawn "alacritty" "-e" "zellij"; }
   Mod+E { spawn "alacritty" "-e" "yazi" "~"; }
   Mod+R { spawn "wofi" "--show" "drun"; }
-  Mod+M { spawn "bash" "-c" "~/.config/system_scripts/power-menu.sh"; }
+  Mod+M { spawn "bash" "-c" "exec ~/.config/system_scripts/power-menu.sh"; }
 
   // You can also use a shell. Do this if you need pipes, multiple commands, etc.
   // Note: the entire command goes as a single argument in the end.
