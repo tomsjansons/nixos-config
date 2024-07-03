@@ -9,17 +9,19 @@ case $op in
                 systemctl $op
                 ;;
         hibernate)
-                # hyprlock & sleep 2 && systemctl $op
-                hyprlock & sleep 3 && systemctl $op
+                # hyprlock & sleep 3 && systemctl $op
+                exec /etc/nixos/system_scripts/swaylockwp.sh & sleep 3 && systemctl $op
                 ;;
         suspend)
-                # hyprlock & sleep 2 && systemctl $op
-                hyprlock & sleep 3 && systemctl $op
+                # hyprlock & sleep 3 && systemctl $op
+                exec /etc/nixos/system_scripts/swaylockwp.sh & sleep 3 && systemctl $op
                 ;;
         lock)
-		hyprlock
+                # hyprlock
+                exec /etc/nixos/system_scripts/swaylockwp.sh
                 ;;
         logout)
-                hyprctl dispatch exit
+                # hyprctl dispatch exit
+                niri msg action quit
                 ;;
 esac

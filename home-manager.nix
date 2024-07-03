@@ -106,7 +106,7 @@ args@{
         ls = "eza";
         cat = "bat";
         oneovide = "neovide $argv[2..-1] &; disown";
-        # cd = "z";
+        cdz = "z";
       };
 
       interactiveShellInit = ''

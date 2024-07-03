@@ -222,6 +222,8 @@
     xwayland-satellite = pkgs.callPackage ./xwayland-satellite.nix {};
   in
   with pkgs; [
+    swaylock
+    swaybg
     niri
     xwayland-satellite
     xdg-desktop-portal-gtk

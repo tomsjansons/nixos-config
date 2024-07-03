@@ -22,7 +22,8 @@
 		"tray"
 	],
 	"modules-center": [
-		"hyprland/workspaces"
+		// "hyprland/workspaces",
+		"custom/workspaces"
 	],
 	"modules-right": [
 		"custom/notification",

@@ -15,12 +15,13 @@ spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store" //Stor
 spawn-at-startup "systemctl" "--user" "start" "blueman-applet"
 spawn-at-startup "systemctl" "--user" "start" "network-manager-applet"
 spawn-at-startup "xwayland-satellite"
+spawn-at-startup "swaybg" "-i" "/etc/nixos/system_scripts/wp-01.jpg"
 
 prefer-no-csd
 
 environment {
-	QT_QPA_PLATFORMTHEME "qt5ct"
-	GTK_THEME "Adwaita:dark"
+  QT_QPA_PLATFORMTHEME "qt5ct"
+  GTK_THEME "Adwaita:dark"
   DISPLAY ":0"
 }
 
@@ -145,7 +146,7 @@ layout {
   }
 
   // You can change the default width of the new windows.
-  default-column-width { proportion 0.5; }
+  default-column-width { proportion 0.333333; }
   // If you leave the brackets empty, the windows themselves will decide their initial width.
   // default-column-width {}
 
@@ -166,7 +167,7 @@ layout {
     // off
 
     // How many logical pixels the ring extends out from the windows.
-    width 4
+    width 2
 
     // Colors can be set in a variety of ways:
     // - CSS named colors: "red"
@@ -185,7 +186,7 @@ layout {
     // defaulting to 180 (top-to-bottom gradient).
     // You can use any CSS linear-gradient tool on the web to set these up.
     //
-    active-gradient from="#98971a" to="#d79921" angle=45
+    active-gradient from="#98971a" to="#d79921" angle=180
 
     // You can also color the gradient relative to the entire view
     // of the workspace, rather than relative to just the window itself.
@@ -249,6 +250,11 @@ animations {
 
   // Slow down all animations by this factor. Values below 1 speed them up instead.
   // slowdown 3.0
+}
+
+window-rule {
+  geometry-corner-radius 6
+  clip-to-geometry true
 }
 
 // Window rules let you adjust behavior for individual windows.
@@ -317,19 +323,19 @@ binds {
 
   Mod+C { close-window; }
 
-  Mod+Left  { focus-column-left; }
-  Mod+Down  { focus-window-down; }
-  Mod+Up    { focus-window-up; }
-  Mod+Right { focus-column-right; }
+  // Mod+Left  { focus-column-left; }
+  // Mod+Down  { focus-window-down; }
+  // Mod+Up    { focus-window-up; }
+  // Mod+Right { focus-column-right; }
   Mod+H     { focus-column-left; }
   Mod+J     { focus-window-down; }
   Mod+K     { focus-window-up; }
   Mod+L     { focus-column-right; }
 
-  Mod+Shift+Left  { move-column-left; }
-  Mod+Shift+Down  { move-window-down; }
-  Mod+Shift+Up    { move-window-up; }
-  Mod+Shift+Right { move-column-right; }
+  // Mod+Shift+Left  { move-column-left; }
+  // Mod+Shift+Down  { move-window-down; }
+  // Mod+Shift+Up    { move-window-up; }
+  // Mod+Shift+Right { move-column-right; }
   Mod+Shift+H     { move-column-left; }
   Mod+Shift+J     { move-window-down; }
   Mod+Shift+K     { move-window-up; }
@@ -351,19 +357,19 @@ binds {
   // Mod+Shift+Down  { focus-monitor-down; }
   // Mod+Shift+Up    { focus-monitor-up; }
   // Mod+Shift+Right { focus-monitor-right; }
-  // Mod+Shift+H     { focus-monitor-left; }
-  // Mod+Shift+J     { focus-monitor-down; }
-  // Mod+Shift+K     { focus-monitor-up; }
-  // Mod+Shift+L     { focus-monitor-right; }
+  Mod+Ctrl+H     { focus-monitor-left; }
+  Mod+Ctrl+J     { focus-monitor-down; }
+  Mod+Ctrl+K     { focus-monitor-up; }
+  Mod+Ctrl+L     { focus-monitor-right; }
 
   // Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
   // Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
   // Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
   // Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
-  // Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
-  // Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
-  // Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
-  // Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+  Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
+  Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
+  Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
+  Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
 
   // Alternatively, there are commands to move just a single window:
   // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
@@ -386,10 +392,10 @@ binds {
   // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
   // ...
 
-  Mod+Shift+Page_Down { move-workspace-down; }
-  Mod+Shift+Page_Up   { move-workspace-up; }
-  Mod+Shift+U         { move-workspace-down; }
-  Mod+Shift+I         { move-workspace-up; }
+  // Mod+Shift+Page_Down { move-workspace-down; }
+  // Mod+Shift+Page_Up   { move-workspace-up; }
+  // Mod+Shift+U         { move-workspace-down; }
+  // Mod+Shift+I         { move-workspace-up; }
 
   // You can bind mouse wheel scroll ticks using the following syntax.
   // These binds will change direction based on the natural-scroll setting.
@@ -440,6 +446,15 @@ binds {
   Mod+7 { focus-workspace 7; }
   Mod+8 { focus-workspace 8; }
   Mod+9 { focus-workspace 9; }
+  // Mod+1 { spawn "~/.config/waybar/modules/niri-workspaces.sh" "focus-workspace" "1"; }
+  // Mod+2 { spawn "~/.config/waybar/modules/niri-workspaces.sh" "focus-workspace" "2"; }
+  // Mod+3 { spawn "~/.config/waybar/modules/niri-workspaces.sh" "focus-workspace" "3"; }
+  // Mod+4 { spawn "~/.config/waybar/modules/niri-workspaces.sh" "focus-workspace" "4"; }
+  // Mod+5 { spawn "~/.config/waybar/modules/niri-workspaces.sh" "focus-workspace" "5"; }
+  // Mod+6 { spawn "~/.config/waybar/modules/niri-workspaces.sh" "focus-workspace" "6"; }
+  // Mod+7 { spawn "~/.config/waybar/modules/niri-workspaces.sh" "focus-workspace" "7"; }
+  // Mod+8 { spawn "~/.config/waybar/modules/niri-workspaces.sh" "focus-workspace" "8"; }
+  // Mod+9 { spawn "~/.config/waybar/modules/niri-workspaces.sh" "focus-workspace" "9"; }
   Mod+Shift+1 { move-column-to-workspace 1; }
   Mod+Shift+2 { move-column-to-workspace 2; }
   Mod+Shift+3 { move-column-to-workspace 3; }

@@ -36,7 +36,7 @@ while true ; do
             
             if [ $(get_bat_percent) -le ${CRIT_BAT} ]; then
                 notify-send -u critical -i /etc/nixos/system_scripts/icons8-sleep-50.png "Battery critical - hibernating" 
-                hyperlock &
+                exec /etc/nixos/system_scripts/swaylockwp.sh &
                 sleep 2
                 systemctl hibernate
             fi

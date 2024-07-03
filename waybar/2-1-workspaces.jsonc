@@ -1,5 +1,14 @@
 {
-	"hyprland/workspaces": {
-		"show-special": true
+	// "hyprland/workspaces": {
+	// 	"show-special": true
+	// }
+	"custom/workspaces": {
+		"format": "{}",
+		"interval": 1,
+		"return-type": "json",
+		"exec": "$HOME/.config/system_scripts/niri-workspaces.sh \"$WAYBAR_OUTPUT_NAME\"",
+		"on-scroll-up": "$HOME/.config/system_scripts/niri-workspaces.sh up",
+		"on-scroll-down": "$HOME/.config/system_scripts/niri-workspaces.sh down",
+		"signal": 8
 	}
 }
