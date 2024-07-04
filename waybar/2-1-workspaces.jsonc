@@ -6,9 +6,10 @@
 		"format": "{}",
 		"interval": 1,
 		"return-type": "json",
-		"exec": "$HOME/.config/system_scripts/niri-workspaces.sh \"$WAYBAR_OUTPUT_NAME\"",
-		"on-scroll-up": "$HOME/.config/system_scripts/niri-workspaces.sh up",
-		"on-scroll-down": "$HOME/.config/system_scripts/niri-workspaces.sh down",
+		// "exec": "$HOME/.config/system_scripts/niri-workspaces.sh \"$WAYBAR_OUTPUT_NAME\"",
+		"exec": "$HOME/.config/system_scripts/niri-ws.ts \"$WAYBAR_OUTPUT_NAME\"",
+		"on-scroll-up": "$HOME/.config/system_scripts/niri-ws.ts up",
+		"on-scroll-down": "$HOME/.config/system_scripts/niri-ws.ts down",
 		"signal": 8
 	}
 }
