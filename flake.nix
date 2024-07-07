@@ -25,6 +25,10 @@
     #   url = "github:lilyinstarlight/nixos-cosmic";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { 
@@ -44,6 +48,7 @@
         #   };
         # }
         # attrs.nixos-cosmic.nixosModules.default
+        attrs.niri.nixosModules.niri
         ./configuration.nix 
         ./home-manager.nix
         # ./cosmic.nix

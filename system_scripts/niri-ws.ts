@@ -11,6 +11,15 @@ if (outputOrAction === "up") {
   await $`niri msg action focus-workspace-up && pkill -SIGRTMIN+8 waybar;;`;
 } else if (outputOrAction === "down") {
   await $`niri msg action focus-workspace-down && pkill -SIGRTMIN+8 waybar;;`;
+} else if (outputOrAction === "click") {
+  const workspaces = JSON.parse(await $`niri msg -j workspaces`.text())
+    .map((ws) => ws.name)
+    .join("\n");
+  const choice = (
+    await $`echo "${workspaces}" | wofi -i --dmenu --sort-order=alphabetical`.text()
+  ).split("\n")[0];
+  console.log({ choice });
+  await $`niri msg action focus-workspace "${choice}"`;
 } else {
   const output = outputOrAction;
 

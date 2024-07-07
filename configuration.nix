@@ -89,10 +89,32 @@
 
   # xdg.portal = {
   #   enable = true;
+  #   wlr.enable = true;
   #   extraPortals = [
-  #     pkgs.xdg-desktop-portal-hyprland
+  #     pkgs.xdg-desktop-portal-wlr
+  #     (pkgs.xdg-desktop-portal-gtk.override { 
+  #       # Do not build portals that we already have. 
+  #       buildPortalsInGnome = false; 
+  #     }) 
   #   ];
+  #   config = {
+  #     common = {
+  #       default = [
+  #         "wlr"
+  #         "gtk"
+  #       ];
+  #       "org.freedesktop.impl.portal.Secret" = [
+  #         "gnome-keyring"
+  #       ];
+  #     };
+  #   };
   # };
+
+  nix.gc = {
+    automatic = true;
+    randomizedDelaySec = "14m";
+    options = "--delete-older-than 10d";
+  };
 
   # for cosmic needs to be commented out - start
   services.greetd = {
@@ -217,18 +239,24 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+
+  programs.niri.enable = true;
   
   environment.systemPackages = let 
     xwayland-satellite = pkgs.callPackage ./xwayland-satellite.nix {};
   in
   with pkgs; [
+    lua-language-server
+    prettierd
+    eslint_d
+    biome
     bun
     swaylock
     swaybg
-    niri
+    # niri
     xwayland-satellite
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-gnome
+    # xdg-desktop-portal-gtk
+    # xdg-desktop-portal-wlr
     zed-editor
     neovide
     calc

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-op=$( echo -e " Poweroff\n Reboot\n󱉚 Hibernate\n Suspend\n Lock\n Logout" | wofi -i --dmenu | awk '{print tolower($2)}' )
+op=$( echo -e " Poweroff\n Reboot\n󱉚 Hibernate\n Suspend\n Lock\n Logout" | wofi -i --dmenu --sort-order=alphabetical | awk '{print tolower($2)}' )
 
 case $op in 
         poweroff)
