@@ -1,1 +1,1 @@
-swaylock -i /etc/nixos/system_scripts/wp-01.jpg
+swaylock -i /etc/nixos/system_scripts/astronaut_wp.jpg

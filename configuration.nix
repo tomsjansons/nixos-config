@@ -244,8 +244,17 @@
   
   environment.systemPackages = let 
     xwayland-satellite = pkgs.callPackage ./xwayland-satellite.nix {};
+    zed-fhs = pkgs.buildFHSUserEnv {
+      name = "zed";
+      targetPkgs = pkgs:
+        with pkgs; [
+          zed-editor
+        ];
+      runScript = "zed";
+    };
   in
   with pkgs; [
+    xwaylandvideobridge
     lua-language-server
     prettierd
     eslint_d
@@ -257,7 +266,7 @@
     xwayland-satellite
     # xdg-desktop-portal-gtk
     # xdg-desktop-portal-wlr
-    zed-editor
+    zed-fhs
     neovide
     calc
     tidal-hifi
@@ -297,7 +306,7 @@
     grim
     slurp
     swaynotificationcenter
-    xdg-desktop-portal-hyprland
+    # xdg-desktop-portal-hyprland
     polkit_gnome
     busybox
     playerctl 

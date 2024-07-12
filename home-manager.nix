@@ -284,7 +284,7 @@ args@{
               pkgs.gnugrep 
               pkgs.acpi 
               pkgs.libnotify 
-            ]} ${pkgs.bash}/bin/bash /home/toms/.config/system_scripts/battery-check.sh
+            ]} ${pkgs.bun}/bin/bun /home/toms/.config/system_scripts/battery-check.ts
         '');
         RestartSec = 3;
         Restart = "always";

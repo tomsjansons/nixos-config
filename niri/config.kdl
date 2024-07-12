@@ -15,7 +15,7 @@ spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store" //Stor
 spawn-at-startup "systemctl" "--user" "start" "blueman-applet"
 spawn-at-startup "systemctl" "--user" "start" "network-manager-applet"
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "swaybg" "-i" "/etc/nixos/system_scripts/wp-01.jpg"
+spawn-at-startup "swaybg" "-i" "/etc/nixos/system_scripts/astronaut_wp.jpg"
 
 prefer-no-csd
 
@@ -417,7 +417,8 @@ binds {
   // ...
 
   // And you can also move a whole workspace to another monitor:
-  // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
+  Mod+Shift+Ctrl+Alt+H  { move-workspace-to-monitor-left; }
+  Mod+Shift+Ctrl+Alt+L  { move-workspace-to-monitor-right; }
   // ...
 
   // Mod+Page_Down      { focus-workspace-down; }

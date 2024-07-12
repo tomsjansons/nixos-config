@@ -21,7 +21,11 @@ format_on_save.setup({
     css = formatters.lsp,
     html = formatters.lsp,
     java = formatters.lsp,
-    javascript = formatters.lsp,
+    javascript = {
+      formatters.eslint_d_fix,
+      -- formatters.shell({ cmd = "biome format" })
+      formatters.prettierd,
+    },
     json = formatters.lsp,
     jsonc = formatters.lsp,
     lua = formatters.lsp,
@@ -35,10 +39,12 @@ format_on_save.setup({
     terraform = formatters.lsp,
     typescript = {
       formatters.eslint_d_fix,
-      formatters.prettierd
+      -- formatters.shell({ cmd = "biome format" })
+      formatters.prettierd,
     },
     typescriptreact = {
       formatters.eslint_d_fix,
+      -- formatters.shell({ cmd = "biome format" }),
       formatters.prettierd,
     },
     yaml = formatters.lsp,
