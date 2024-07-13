@@ -5,7 +5,7 @@ import { $, file } from "bun";
 const INTERVAL = 30;
 const MIN_BAT = 10;
 const MAX_BAT = 80;
-const CRIT_BAT = 2;
+const CRIT_BAT = 3;
 
 async function getPluggedState() {
   const output: string = await file(
@@ -25,25 +25,28 @@ async function getBatteryLevel() {
 while (true) {
   const batPercent = await getBatteryLevel();
   const pluggedState = await getPluggedState();
+
+  const markerFile = file("/tmp/battery-check-marker");
+
   if (pluggedState === "Discharging") {
-    await $`rm /tmp/battery-check-marker`;
+    if (await markerFile.exists()) {
+      await $`rm /tmp/battery-check-marker`;
+    }
 
     if (batPercent < CRIT_BAT) {
       await $`notify-send -u critical -i /etc/nixos/system_scripts/icons8-sleep-50.png "Battery critical - hibernating"`;
-      await $`exec /etc/nixos/system_scripts/swaylockwp.sh &`;
-      await new Promise((resolve) => () => setTimeout(resolve, 2 * 1000));
       await $`systemctl hibernate`;
+      await $`bash /etc/nixos/system_scripts/swaylockwp.sh`;
     } else if (batPercent < MIN_BAT) {
       await $`notify-send -u critical -i /etc/nixos/system_scripts/icons8-android-l-battery-64.png "Battery below ${MIN_BAT}"`;
     }
   }
   if (pluggedState === "Charging" && batPercent > MAX_BAT) {
-    const markerFile = file("/tmp/battery-check-marker");
     if (!(await markerFile.exists())) {
       await $`notify-send -u critical -i /etc/nixos/system_scripts/icons8-full-battery-64.png "Battery above ${MAX_BAT}"`;
       await $`touch /tmp/battery-check-marker`;
     }
   }
 
-  await new Promise((resolve) => () => setTimeout(resolve, INTERVAL * 1000));
+  await new Promise((resolve) => setTimeout(resolve, INTERVAL * 1000));
 }
