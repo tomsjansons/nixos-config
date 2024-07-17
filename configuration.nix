@@ -138,9 +138,9 @@
     TTYVTDisallocate = true;
   };
 
-  services.logind.lidSwitch = "ignore";
+  services.logind.lidSwitch = "suspend";
   services.logind.lidSwitchDocked = "ignore";
-  services.logind.lidSwitchExternalPower = "ignore";
+  services.logind.lidSwitchExternalPower = "suspend";
 
   programs.hyprland = {
     enable = true;
@@ -260,6 +260,7 @@
     eslint_d
     biome
     bun
+    swayidle
     swaylock
     swaybg
     # niri

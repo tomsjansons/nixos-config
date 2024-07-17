@@ -36,7 +36,6 @@ while (true) {
     if (batPercent < CRIT_BAT) {
       await $`notify-send -u critical -i /etc/nixos/system_scripts/icons8-sleep-50.png "Battery critical - hibernating"`;
       await $`systemctl hibernate`;
-      await $`bash /etc/nixos/system_scripts/swaylockwp.sh`;
     } else if (batPercent < MIN_BAT) {
       await $`notify-send -u critical -i /etc/nixos/system_scripts/icons8-android-l-battery-64.png "Battery below ${MIN_BAT}"`;
     }

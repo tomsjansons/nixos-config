@@ -10,11 +10,11 @@ case $op in
                 ;;
         hibernate)
                 # hyprlock & sleep 3 && systemctl $op
-                exec /etc/nixos/system_scripts/swaylockwp.sh & sleep 3 && systemctl $op
+                systemctl $op
                 ;;
         suspend)
                 # hyprlock & sleep 3 && systemctl $op
-                exec /etc/nixos/system_scripts/swaylockwp.sh & sleep 3 && systemctl $op
+                systemctl $op
                 ;;
         lock)
                 # hyprlock

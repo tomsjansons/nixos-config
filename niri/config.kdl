@@ -16,6 +16,7 @@ spawn-at-startup "systemctl" "--user" "start" "blueman-applet"
 spawn-at-startup "systemctl" "--user" "start" "network-manager-applet"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swaybg" "-i" "/etc/nixos/system_scripts/astronaut_wp.jpg"
+spawn-at-startup "bash" "/etc/nixos/system_scripts/swayidle.sh"
 
 prefer-no-csd
 
@@ -92,7 +93,7 @@ input {
     tap
     // dwt
     // dwtp
-    natural-scroll
+    // natural-scroll
     // accel-speed 0.2
     // accel-profile "flat"
     // scroll-method "two-finger"
