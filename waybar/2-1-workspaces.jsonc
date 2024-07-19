@@ -1,7 +1,4 @@
 {
-	// "hyprland/workspaces": {
-	// 	"show-special": true
-	// }
 	"custom/workspaces": {
 		"format": "{}",
 		"interval": 1,

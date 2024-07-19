@@ -142,13 +142,6 @@
   services.logind.lidSwitchDocked = "ignore";
   services.logind.lidSwitchExternalPower = "suspend";
 
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.default;
-  };
-
-  # programs.niri.enable = true;
-
   hardware.brillo.enable = true;
 
   environment.xfce.excludePackages = with pkgs; [
@@ -271,7 +264,6 @@
     neovide
     calc
     tidal-hifi
-    hyprpicker
     zoom-us
     # yazi start
     ffmpegthumbnailer
@@ -298,8 +290,6 @@
     gnome.gucharmap
     nix-prefetch-github
     grc
-    hyprpaper
-    inputs.hyprlock.packages.${builtins.currentSystem}.default
     tldr
     zip
     xdg-user-dirs
@@ -307,7 +297,6 @@
     grim
     slurp
     swaynotificationcenter
-    # xdg-desktop-portal-hyprland
     polkit_gnome
     busybox
     playerctl 

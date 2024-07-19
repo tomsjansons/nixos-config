@@ -22,7 +22,6 @@
 		"tray"
 	],
 	"modules-center": [
-		// "hyprland/workspaces",
 		"custom/workspaces"
 	],
 	"modules-right": [

@@ -160,13 +160,6 @@ args@{
         source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/nvim;
         recursive = true;
       };
-      hypr = {
-        source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/hypr;
-      };
-      "hypr-plugins-hy3" = {
-        target = "hypr-plugins/libhy3.so";
-        source = "${args.hy3.packages.${pkgs.system}.default}/lib/libhy3.so";
-      };
       waybar = {
         source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/waybar;
         recursive = true;
