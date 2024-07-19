@@ -97,6 +97,7 @@ args@{
       enable = true;
       shellAliases = {
         nixconf = "cd /etc/nixos && sudo -E fish -c 'neovide &; disown'"; 
+        nixconf_light = "cd /etc/nixos && sudo -E fish -c 'NVIM_LIGHT=\"true\" neovide &; disown'"; 
         nixupd = "sudo nixos-rebuild switch --impure";
         nixsh = "nix-shell --command fish";
         nixshp = "nix-shell --command fish -p";
@@ -105,7 +106,9 @@ args@{
         lsas = "eza --long --all --icons=always --git --time-style=long-iso --octal-permissions --no-user";
         ls = "eza";
         cat = "bat";
-        oneovide = "neovide $argv[2..-1] &; disown";
+        neovide_disown = "neovide $argv[2..-1] &; disown";
+        neovide_disown_light = "NVIM_LIGHT=\"true\" neovide $argv[2..-1] &; disown";
+        nvim_light = "NVIM_LIGHT=\"true\" nvim";
         cdz = "z";
       };
 

@@ -193,7 +193,7 @@ require('lazy').setup({
     name = "gruvbox",
     priority = 1000,
     config = function()
-      vim.o.background = "dark"
+      vim.o.background = os.getenv("NVIM_LIGHT") == "true" and "light" or "dark"
       vim.cmd.colorscheme "gruvbox"
     end,
   },
@@ -213,7 +213,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'gruvbox_dark',
+        theme = os.getenv("NVIM_LIGHT") == "true" and "gruvbox_light" or "gruvbox_dark",
         component_separators = '|',
         section_separators = '',
 
@@ -1106,12 +1106,6 @@ local nix_cmds = {
   prettierd = get_nix_cmd("prettierd", "prettierd"),
   eslint_d = get_nix_cmd("eslint_d", "eslint_d")
 }
-
-print(nix_cmds.eslint_d)
-print(nix_cmds.prettierd)
-print(nix_cmds.biome)
-print(nix_cmds.lua_ls)
-print(nix_cmds.rust_analyzer)
 
 local on_attach = require('lsp-config')
 
