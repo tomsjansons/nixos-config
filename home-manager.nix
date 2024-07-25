@@ -110,6 +110,8 @@ args@{
         neovide_disown_light = "NVIM_LIGHT=\"true\" neovide $argv[2..-1] &; disown";
         nvim_light = "NVIM_LIGHT=\"true\" nvim";
         cdz = "z";
+        alacritty_dark = "alacritty msg config \"$(cat ~/.config/alacritty/gruvbox_dark.toml)\"";
+        alacritty_light = "alacritty msg config \"$(cat ~/.config/alacritty/gruvbox_light.toml)\"";
       };
 
       interactiveShellInit = ''
