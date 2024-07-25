@@ -2,7 +2,8 @@
 @import url("1-2-cpu.css");
 @import url("1-3-memory.css");
 @import url("1-4-media.css");
-@import url("1-5-tray.css");
+@import url("1-5-network.css");
+@import url("1-6-tray.css");
 @import url("2-1-workspaces.css");
 @import url("3-1-notifications.css");
 @import url("3-2-backlight.css");

@@ -4,7 +4,8 @@
 		"/home/toms/.config/waybar/1-2-cpu.jsonc",
 		"/home/toms/.config/waybar/1-3-memory.jsonc",
 		"/home/toms/.config/waybar/1-4-media.jsonc",
-		"/home/toms/.config/waybar/1-5-tray.jsonc",
+		"/home/toms/.config/waybar/1-5-network.jsonc",
+		"/home/toms/.config/waybar/1-6-tray.jsonc",
 		"/home/toms/.config/waybar/2-1-workspaces.jsonc",
 		"/home/toms/.config/waybar/3-1-notifications.jsonc",
 		"/home/toms/.config/waybar/3-2-backlight.jsonc",
@@ -19,6 +20,7 @@
 		"cpu",
 		"memory",
 		"custom/media",
+		"network",
 		"tray"
 	],
 	"modules-center": [

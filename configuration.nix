@@ -30,7 +30,9 @@
     127.0.0.1   two.zini.local
     127.0.0.1   zini-two.local
   '';
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.wireless.iwd.enable = true;
 
   programs.git = {
     enable = true;
@@ -48,7 +50,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  # networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Riga";
@@ -247,7 +249,8 @@
     };
   in
   with pkgs; [
-    xwaylandvideobridge
+    xwayland
+    impala
     lua-language-server
     prettierd
     eslint_d
