@@ -227,8 +227,6 @@
     enable = true;
   };
 
-  virtualisation.waydroid.enable = true;
-
   # for niri
   services.gnome.gnome-keyring.enable = true;
 
@@ -249,6 +247,10 @@
     };
   in
   with pkgs; [
+    vscode-extensions.vadimcn.vscode-lldb
+    erdtree
+    prs
+    cyme
     xwayland
     impala
     lua-language-server
