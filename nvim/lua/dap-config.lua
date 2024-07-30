@@ -20,19 +20,31 @@ dap.configurations.rust = {
     name = 'Debug with codelldb',
     type = 'codelldb',
     request = 'launch',
+    -- program =
+    -- "cat map-data/map-data-riga-cesis.json | /home/toms/dev/moto-router/target/debug/moto-router --from_lat 57.1542058021927 --from_lon 24.853520393371586 --to_lat 57.31337 --to_lon 25.28080",
     program = function()
       return vim.fn.input({
         prompt = 'Path to executable: ',
-        default = vim.fn.getcwd() .. '/',
+        default = vim.fn.getcwd() .. '/target/debug/',
         completion = 'file',
       })
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
+    args = {
+      "--data_file",
+      "map-data/map-data-riga-cesis.json",
+      "--from_lat",
+      "57.1542058021927",
+      "--from_lon",
+      "24.853520393371586",
+      "--to_lat",
+      "57.31337",
+      "--to_lon",
+      "25.28080"
+    }
   },
 }
-
-require("nio")
 
 require("dapui").setup()
 

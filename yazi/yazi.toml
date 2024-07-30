@@ -49,10 +49,15 @@ play = [
 	{ run = 'mpv "%1"', orphan = true, for = "windows" },
 	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read''', block = true, desc = "Show media info", for = "unix" },
 ]
+gpx = [
+	{ run = 'gpxsee "$@"', desc = "gpxsee", block = false, orphan = true, for = "unix"}
+]
 
 [open]
 rules = [
 	{ name = "*/", use = [ "edit", "open", "reveal" ] },
+
+	{ name = "*.gpx",												use = "gpx" },
 
 	{ mime = "text/*",  use = [ "edit", "reveal" ] },
 	{ mime = "image/*", use = [ "open", "reveal" ] },
@@ -71,6 +76,7 @@ rules = [
 	{ mime = "application/x-7z-compressed", use = [ "extract", "reveal" ] },
 	{ mime = "application/x-rar",           use = [ "extract", "reveal" ] },
 	{ mime = "application/xz",              use = [ "extract", "reveal" ] },
+	
 
 	{ mime = "*", use = [ "open", "reveal" ] },
 ]
