@@ -191,7 +191,7 @@
   users.users.toms = {
     isNormalUser = true;
     description = "Toms Jansons";
-    extraGroups = [ "networkmanager" "wheel" "docker" "input" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "input" "video" "libvirtd" ];
     packages = with pkgs; [
     ];
   };
@@ -218,6 +218,17 @@
   };
 
   virtualisation.docker.enable = true;
+	virtualisation.libvirtd.enable = true;
+	programs.virt-manager.enable = true;
+	# programs.dconf = {
+	# 	enable = true;
+	# 	settings = {
+	# 		"org/virt-manager/virt-manager/connections" = {
+	# 			autoconnect = ["qemu:///system"];
+	# 			uris = ["qemu:///system"];
+	# 		};
+	# 	};
+	# };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -247,6 +258,9 @@
     };
   in
   with pkgs; [
+		youtube-tui
+		spotify-player
+    jetbrains.rust-rover
     vscode-extensions.vadimcn.vscode-lldb
     erdtree
     prs

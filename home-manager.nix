@@ -33,6 +33,16 @@ args@{
       };
     };
 
+		dconf = {
+			enable = true;
+			settings = {
+				"org/virt-manager/virt-manager/connections" = {
+					autoconnect = ["qemu:///system"];
+					uris = ["qemu:///system"];
+				};
+			};
+		};
+
     /* The home.stateVersion option does not have a default and must be set */
     programs.git = {
       enable = true;
@@ -112,6 +122,7 @@ args@{
         cdz = "z";
         alacritty_dark = "alacritty msg config \"$(cat ~/.config/alacritty/gruvbox_dark.toml)\"";
         alacritty_light = "alacritty msg config \"$(cat ~/.config/alacritty/gruvbox_light.toml)\"";
+				oy = "sudo systemctl restart dhcpcd && sudo systemctl restart iwd";
       };
 
       interactiveShellInit = ''
